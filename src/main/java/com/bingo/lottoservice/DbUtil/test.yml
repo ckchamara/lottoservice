@@ -1,0 +1,121 @@
+lottery:
+  name: Mahajana Sampatha
+  id: 321
+  special-charactors:
+    - image:
+        name: lagna-abc
+        uri: urlToImage
+  outline:
+    positions:
+      - 1: letter #lagna-abc
+      - 2: number
+      - 3: number
+      - 4: number
+      - 5: number
+      - 6: number
+      - 7: number
+
+  configuration:
+    - rule: #Letter and 6th 6 Numbers Correct
+      positions:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+      positional value: true
+      prize: 10,000,000.00
+
+    - rule: #6th 6 Numbers Correct
+      positions:
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+      positional value: true
+      prize: 2,000,000.00
+
+    - rule:  #6th 5 Numbers Correct
+      positions:
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+      positional value: true
+      prize: 100,000.00
+
+    - rule: #6th 4 Numbers Correct
+      positions:
+        - 4
+        - 5
+        - 6
+        - 7
+      positional value: true
+      prize: 10,000.00
+
+    - rule: #6th 3 Numbers Correct
+      positions:
+        - 5
+        - 6
+        - 7
+      positional value: true
+      prize: 1,000.00
+
+    - rule: #6th 2 Numbers Correct
+      positions:
+        - 6
+        - 7
+      positional value: true
+      prize: 100.00
+    - rule: #6th Number Correct
+      positions:
+        - 7
+      positional value: true
+      prize: 20.00
+
+
+    - rule:  #5th 5 Numbers Correct
+      positions:
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+      positional value: true
+      prize: 10,000.00
+
+    - rule: #4th 4 Numbers Correct
+      positions:
+        - 2
+        - 3
+        - 4
+
+      positional value: true
+      prize: 1,000.00
+
+    - rule: #3th 3 Numbers Correct
+      positions:
+        - 2
+        - 3
+        - 4
+      positional value: true
+      prize: 1,00.00
+
+    - rule: #2th 2 Numbers Correct
+      positions:
+        - 2
+        - 3
+      positional value: true
+      prize: 50.00
+
+    - rule: #Letter Correct
+      positions:
+        - 7
+      positional value: true
+      prize: 20.00
+
