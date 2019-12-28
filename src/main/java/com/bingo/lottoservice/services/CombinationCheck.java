@@ -2,28 +2,21 @@ package com.bingo.lottoservice.services;
 
 import com.bingo.lottoservice.model.Configuration;
 import com.bingo.lottoservice.utils.FileReader;
-import org.apache.coyote.http11.InputFilter;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 import org.yaml.snakeyaml.Yaml;
-
-import java.io.FileInputStream;
+import org.yaml.snakeyaml.constructor.Constructor;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
 public class CombinationCheck {
 
-   // InputStream input = new FileInputStream(new FileReader().getFileContent("E:/Projects/lottoservice/src/main/java/com/bingo/lottoservice/DbUtil/test.yml"));
-//    InputStream input = this.getClass()
-//           .getClassLoader()
-//           .getResourceAsStream("test.yml");
-    Resource resource = new ClassPathResource("classpath:com/bingo/lottoservice/DbUtil/test.yml");
-    InputStream input = resource.getInputStream();
-    Configuration ymlConfig = new Yaml().load(input);
-
-    public void print(){
-        System.out.println(ymlConfig);
+    private Yaml yaml = new Yaml(new Constructor(Configuration.class));
+    private InputStream inputStream = new ByteArrayInputStream(new FileReader().getFileContent("test.yml").getBytes());
+    Configuration configuration = yaml.load(inputStream);
+    public void print() {
+        System.out.println(yaml.load(inputStream).toString());
     }
     public CombinationCheck() throws IOException {
     }
+
 }

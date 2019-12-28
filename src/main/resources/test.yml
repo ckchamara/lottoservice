@@ -1,6 +1,6 @@
-name: Mahajana Sampatha
+name: MahajanaSampatha
 id: 321
-specialCharactors:
+special-charactors:
   - image: lagna-abc
     uri: urlToImage
 positions:

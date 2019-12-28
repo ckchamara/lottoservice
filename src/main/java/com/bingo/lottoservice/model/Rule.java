@@ -7,4 +7,36 @@ public class Rule {
     private List<Integer> positions;
     private Boolean positional_value;
     private double prize;
+
+    public String getRule() {
+        return rule;
+    }
+
+    public void setRule(String rule) {
+        this.rule = rule;
+    }
+
+    public List<Integer> getPositions() {
+        return positions;
+    }
+
+    public void setPositions(List<Integer> positions) {
+        this.positions = positions;
+    }
+
+    public Boolean getPositional_value() {
+        return positional_value;
+    }
+
+    public void setPositional_value(Boolean positional_value) {
+        this.positional_value = positional_value;
+    }
+
+    public double getPrize() {
+        return prize;
+    }
+
+    public void setPrize(double prize) {
+        this.prize = prize;
+    }
 }
