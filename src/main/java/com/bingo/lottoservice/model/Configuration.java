@@ -1,13 +1,14 @@
 package com.bingo.lottoservice.model;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Configuration {
     private String name;
     private int id;
     private List<SpecialChatactor> specialCharactors;
-    private Map<Integer,String> ticketPositions;
+    private ArrayList<LinkedHashMap<Integer,String>>positions;
     private List<Rule> rules;
 
     public String getName() {
@@ -34,12 +35,12 @@ public class Configuration {
         this.specialCharactors = specialCharactors;
     }
 
-    public Map<Integer, String> getTicketPositions() {
-        return ticketPositions;
+    public ArrayList<LinkedHashMap<Integer, String>> getPositions() {
+        return positions;
     }
 
-    public void setTicketPositions(Map<Integer, String> ticketPositions) {
-        this.ticketPositions = ticketPositions;
+    public void setPositions(ArrayList<LinkedHashMap<Integer, String>> positions) {
+        this.positions = positions;
     }
 
     public List<Rule> getRules() {

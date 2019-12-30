@@ -5,7 +5,7 @@ import java.util.List;
 public class Rule {
     private String rule;
     private List<Integer> positions;
-    private Boolean positional_value;
+    private Boolean positionalValue;
     private double prize;
 
     public String getRule() {
@@ -24,12 +24,12 @@ public class Rule {
         this.positions = positions;
     }
 
-    public Boolean getPositional_value() {
-        return positional_value;
+    public Boolean getPositionalValue() {
+        return positionalValue;
     }
 
-    public void setPositional_value(Boolean positional_value) {
-        this.positional_value = positional_value;
+    public void setPositionalValue(Boolean positionalValue) {
+        this.positionalValue = positionalValue;
     }
 
     public double getPrize() {
