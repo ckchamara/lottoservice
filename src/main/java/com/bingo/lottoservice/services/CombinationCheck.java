@@ -20,9 +20,6 @@ public class CombinationCheck {
     Result result = LoadYAML.load(Result.class,"result.yml");
     Lottery lottery = LoadYAML.load(Lottery.class,"lottery.yml");
 
-    ArrayList<LinkedHashMap<Integer, String>> resultpositions = result.getPositions();
-    List<Rule> s =configuration.getRules();
-
     public void print() {
         System.out.println(configuration.getId());
         System.out.println(result.getName());
@@ -30,18 +27,25 @@ public class CombinationCheck {
     }
 
     public void checkReward(){
-       ArrayList<LinkedHashMap<Integer, String>> resultpositions = result.getPositions();
+       ArrayList<LinkedHashMap<Integer,Object>> resultpositions = result.getPositions();
+        for (LinkedHashMap<Integer,Object> position: resultpositions) {
+            System.out.println(position.values()+" "+" "+position.keySet());
+            int position1 = 5;
+            if (compareLottreryResultMatch(position.get(position1),position1)){
+                System.out.println("matched successfully");
+            }
+            else System.out.println("not matched");
+        }
+    }
 
-       List<Rule> Rules =configuration.getRules();
-       for (Rule rule : Rules){
-           List<Integer> rulePositions = rule.getPositions();
-           for (int rulePosition : rulePositions){
-               for (LinkedHashMap<Integer, String> resultPosition: resultpositions) {
-//                   if (rulePosition==resultPosition)
-               }
-           }
-       }
-
+    public boolean compareLottreryResultMatch(Object resultValue,int resultPosition){
+        ArrayList<LinkedHashMap<Integer,Object>> lotteryPositions = lottery.getPositions();
+        for (LinkedHashMap<Integer,Object> lotteryPosition: lotteryPositions) {
+            if (lotteryPosition.get(resultPosition) == resultValue){
+                return true;
+            }
+        }
+        return false;
     }
 
 }

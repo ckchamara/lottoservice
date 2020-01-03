@@ -7,7 +7,7 @@ public class Result {
     String name;
     int id;
     int drawNo;
-    ArrayList<LinkedHashMap<Integer,String>> positions;
+    ArrayList<LinkedHashMap<Integer,Object>> positions;
 
     public String getName() {
         return name;
@@ -33,11 +33,11 @@ public class Result {
         this.drawNo = drawNo;
     }
 
-    public ArrayList<LinkedHashMap<Integer, String>> getPositions() {
+    public ArrayList<LinkedHashMap<Integer, Object>> getPositions() {
         return positions;
     }
 
-    public void setPositions(ArrayList<LinkedHashMap<Integer, String>> positions) {
+    public void setPositions(ArrayList<LinkedHashMap<Integer, Object>> positions) {
         this.positions = positions;
     }
 }

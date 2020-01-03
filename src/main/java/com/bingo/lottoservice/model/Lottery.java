@@ -6,7 +6,7 @@ import java.util.LinkedHashMap;
 public class Lottery {
     String name;
     int id;
-    ArrayList<LinkedHashMap<Integer,String>> positions;
+    ArrayList<LinkedHashMap<Integer,Object>> positions;
 
     public String getName() {
         return name;
@@ -24,11 +24,11 @@ public class Lottery {
         this.id = id;
     }
 
-    public ArrayList<LinkedHashMap<Integer, String>> getPositions() {
+    public ArrayList<LinkedHashMap<Integer, Object>> getPositions() {
         return positions;
     }
 
-    public void setPositions(ArrayList<LinkedHashMap<Integer, String>> positions) {
+    public void setPositions(ArrayList<LinkedHashMap<Integer, Object>> positions) {
         this.positions = positions;
     }
 }

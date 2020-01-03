@@ -14,6 +14,6 @@ public class LottoserviceApplication {
 
 		CombinationCheck combinationCheck = new CombinationCheck();
 		combinationCheck.print();
+		combinationCheck.checkReward();
 	}
-
 }

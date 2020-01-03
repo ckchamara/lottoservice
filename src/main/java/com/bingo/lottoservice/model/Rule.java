@@ -5,6 +5,16 @@ import java.util.List;
 public class Rule {
     private String rule;
     private List<Integer> positions;
+    private int level;
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
     private Boolean positionalValue;
     private double prize;
 
