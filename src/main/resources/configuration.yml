@@ -101,6 +101,7 @@ rules:
       - 2
       - 3
       - 4
+      - 5
     level: 5
     positionalValue: true
     prize: 1000.00  #1,000.00
@@ -124,7 +125,7 @@ rules:
 
   - rule: Letter Correct
     positions:
-      - 7
+      - 1
     level: 8
     positionalValue: true
     prize: 20.00  #20.00

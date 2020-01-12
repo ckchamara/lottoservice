@@ -25,24 +25,50 @@ public class CombinationCheck {
         System.out.println(lottery.getName());
     }
 
-    public void checkReward() throws NullPointerException{
+    public void checkReward() throws Exception {
+        double rewardPrize = 0;
+        List<Integer> matchingPositions = null;
+        String ruleName = null;
+        //get result positions
+        LinkedHashMap<Integer, Object> resultpositions = mergeHashmaps(result.getPositions());
+        LinkedHashMap<Integer, String> lotteryPositionTypes = mergeHashmaps(configuration.getPositions());
+        LinkedHashMap<Integer, Object> lotteryPositions = mergeHashmaps(lottery.getPositions());
         //get config rule
+        ruleCheckingLoop:
         for (Rule rule:configuration.getRules()) {
             System.out.println(rule.getRule());
+            matchingPositions = new ArrayList<>();
             //get rule positions
             for (int rulePosition:rule.getPositions()) {
-                //get result position
-                ArrayList<LinkedHashMap<Integer, Object>> resultPositions = result.getPositions();
-                //get lotteryPositions
-                ArrayList<LinkedHashMap<Integer, Object>> lotteryPositions = lottery.getPositions();
-                //check wether resultPosition match to loteryPositoin
-                LinkedHashMap<Integer,Object> avc = merge133(lotteryPositions);
-                System.out.println(merge133(lotteryPositions));
-                //for loop to retrive LinkedHashMap
+                System.out.println(rulePosition);
+                int t = rule.getPositions().size();
 
+                if ("number".equals(lotteryPositionTypes.get(rulePosition))) {
+                    if (resultpositions.get(rulePosition).toString()
+                            .equals(lotteryPositions.get(rulePosition).toString())) {
+                        matchingPositions.add(rulePosition);
+                    } else break;
+                } else if ("letter".equals(lotteryPositionTypes.get(rulePosition))) {
+                    if (resultpositions.get(rulePosition).toString()
+                            .equals(lotteryPositions.get(rulePosition).toString())) {
+                        matchingPositions.add(rulePosition);
+                    } else break;
+                } else
+                    throw new Exception("Invalid Lottery configuration number type"); //throw exception here - invalid lottery type
+
+                ruleName = rule.getRule();
+                rewardPrize = rule.getPrize();
             }
+            int o = matchingPositions.size();
+            String s = matchingPositions.toString();
+            if (rule.getPositions().size() == matchingPositions.size())
+                break;
         }
-
+        Map<String, Object> rewardAndValues = new HashMap<>();
+        rewardAndValues.put("reward", rewardPrize);
+        rewardAndValues.put("positions", matchingPositions);
+        rewardAndValues.put("ruleName", ruleName);
+        System.out.println(rewardAndValues);
     }
 
     public boolean compareLottreryResultMatch(Object resultValue,int resultPosition){
@@ -74,7 +100,7 @@ public class CombinationCheck {
        return mergeMap;
     }
 
-    public <T,V> LinkedHashMap<T,V> merge133(ArrayList<LinkedHashMap<T, V>> mapList){
+    public <T, V> LinkedHashMap<T, V> mergeHashmaps(ArrayList<LinkedHashMap<T, V>> mapList) {
         LinkedHashMap<T, V> mergeMap = new LinkedHashMap<>();
         for (LinkedHashMap<T,V> singleMap:mapList) {
             mergeMap.putAll(singleMap);

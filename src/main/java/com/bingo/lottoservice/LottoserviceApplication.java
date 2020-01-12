@@ -13,7 +13,11 @@ public class LottoserviceApplication {
 		SpringApplication.run(LottoserviceApplication.class, args);
 
 		CombinationCheck combinationCheck = new CombinationCheck();
-		combinationCheck.print();
-		combinationCheck.checkReward();
+		//combinationCheck.print();
+		try {
+			combinationCheck.checkReward();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
