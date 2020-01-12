@@ -15,9 +15,9 @@ public class CombinationCheck {
     public CombinationCheck() throws IOException {
     }
 
-    Configuration configuration = LoadYAML.load(Configuration.class, "configuration.yml");
-    Result result = LoadYAML.load(Result.class,"result.yml");
-    Lottery lottery = LoadYAML.load(Lottery.class,"lottery.yml");
+    private Configuration configuration = LoadYAML.load(Configuration.class, "configuration.yml");
+    private Result result = LoadYAML.load(Result.class, "result.yml");
+    private Lottery lottery = LoadYAML.load(Lottery.class, "lottery.yml");
 
     public void print() {
         System.out.println(configuration.getId());
@@ -30,7 +30,7 @@ public class CombinationCheck {
         List<Integer> matchingPositions = null;
         String ruleName = null;
         //get result positions
-        LinkedHashMap<Integer, Object> resultpositions = mergeHashmaps(result.getPositions());
+        LinkedHashMap<Integer, Object> resultPositions = mergeHashmaps(result.getPositions());
         LinkedHashMap<Integer, String> lotteryPositionTypes = mergeHashmaps(configuration.getPositions());
         LinkedHashMap<Integer, Object> lotteryPositions = mergeHashmaps(lottery.getPositions());
         //get config rule
@@ -41,15 +41,14 @@ public class CombinationCheck {
             //get rule positions
             for (int rulePosition:rule.getPositions()) {
                 System.out.println(rulePosition);
-                int t = rule.getPositions().size();
 
                 if ("number".equals(lotteryPositionTypes.get(rulePosition))) {
-                    if (resultpositions.get(rulePosition).toString()
+                    if (resultPositions.get(rulePosition).toString()
                             .equals(lotteryPositions.get(rulePosition).toString())) {
                         matchingPositions.add(rulePosition);
                     } else break;
                 } else if ("letter".equals(lotteryPositionTypes.get(rulePosition))) {
-                    if (resultpositions.get(rulePosition).toString()
+                    if (resultPositions.get(rulePosition).toString()
                             .equals(lotteryPositions.get(rulePosition).toString())) {
                         matchingPositions.add(rulePosition);
                     } else break;
@@ -59,8 +58,6 @@ public class CombinationCheck {
                 ruleName = rule.getRule();
                 rewardPrize = rule.getPrize();
             }
-            int o = matchingPositions.size();
-            String s = matchingPositions.toString();
             if (rule.getPositions().size() == matchingPositions.size())
                 break;
         }
