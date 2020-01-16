@@ -10,45 +10,42 @@ positions:
   - 3: number
   - 4: number
   - 5: number
-  - 6: number
-  - 7: number
 
 rules:
-  - rule: Letter and 6th 6 Numbers Correct
+  - rule: Letter and 4 Numbers Correct
     positions:
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
+      - 1: [1]
+      - 2: [2]
+      - 3: [3]
+      - 4: [4]
+      - 5: [5]
     level: 1
     positionalValue: true
     prize: 10000000.00  #10,000,000.00
 
-  - rule: 6th 6 Numbers Correct
+  - rule: 4 Numbers Correct
     positions:
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
+      - 2: [2]
+      - 3: [3]
+      - 4: [4]
+      - 5: [5]
     level: 2
     positionalValue: true
     prize: 2000000.00  #2,000,000.00
 
-  - rule: 6th 5 Numbers Correct
+  - rule: Letter and any 3 numbers correct
     positions:
+      - 2
       - 3
       - 4
       - 5
       - 6
       - 7
     level: 3
-    positionalValue: false
-    nonFixedPositions: [ 1, 2]
+    positionalValue: true
+    nonPositionalValue: [2, 3, 4]
+    nonPostionalType: number
+    positionalCount: 3
     prize: 100000.00  #100,000.00
 
   - rule: 6th 4 Numbers Correct
