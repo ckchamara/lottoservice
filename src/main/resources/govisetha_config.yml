@@ -1,4 +1,4 @@
-name: MahajanaSampatha
+name: Govisetha
 id: 321
 specialCharactors:
   - image: lagna-abc
@@ -14,117 +14,113 @@ positions:
 rules:
   - rule: Letter and 4 Numbers Correct
     positions:
-      - 1: [1]
-      - 2: [2]
-      - 3: [3]
-      - 4: [4]
-      - 5: [5]
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
     level: 1
-    positionalValue: true
+    positionalValue: false
+    matchingCount: 5
     prize: 10000000.00  #10,000,000.00
 
   - rule: 4 Numbers Correct
     positions:
-      - 2: [2]
-      - 3: [3]
-      - 4: [4]
-      - 5: [5]
+      - 2
+      - 3
+      - 4
+      - 5
     level: 2
     positionalValue: true
-    prize: 2000000.00  #2,000,000.00
+    matchingCount: 4
+    prize: 1000000.00  #2,000,000.00
 
   - rule: Letter and any 3 numbers correct
     positions:
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
+      - 1
+    nonFixedPositions:
+      - 2: [ 2, 3, 4, 5]
+      - 3: [ 2, 3, 4, 5]
+      - 4: [ 2, 3, 4, 5]
+      - 5: [ 2, 3, 4, 5]
     level: 3
-    positionalValue: true
-    nonPositionalValue: [2, 3, 4]
-    nonPostionalType: number
-    positionalCount: 3
+    positionalValue: false
+    nonFixedType: number
+    matchingCount: 4
     prize: 100000.00  #100,000.00
 
-  - rule: 6th 4 Numbers Correct
+  - rule: Any 3 numbers correct
     positions:
-      - 4
-      - 5
-      - 6
-      - 7
+    nonFixedPositions:
+      - 2: [ 2, 3, 4, 5]
+      - 3: [ 2, 3, 4, 5]
+      - 4: [ 2, 3, 4, 5]
+      - 5: [ 2, 3, 4, 5]
     level: 4
-    positionalValue: true
-    prize: 10000.00  #10,000.00
+    positionalValue: false
+    nonFixedType: number
+    matchingCount: 3
+    prize: 2000.00  #10,000.00
 
-  - rule: 6th 3 Numbers Correct
-    positions:
-      - 5
-      - 6
-      - 7
-    level: 5
-    positionalValue: true
-    prize: 1000.00  #1,000.00
-
-  - rule: 6th 2 Numbers Correct
-    positions:
-      - 6
-      - 7
-    level: 6
-    positionalValue: true
-    prize: 100.00  #100.00
-
-  - rule: 6th Number Correct
-    positions:
-      - 7
-    level: 8
-    positionalValue: true
-    prize: 20.00  #20.00
-
-
-  - rule: 5th 5 Numbers Correct
-    positions:
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-    level: 4
-    positionalValue: true
-    prize: 10000.00  #10,000.00
-
-  - rule: 4th 4 Numbers Correct
-    positions:
-      - 2
-      - 3
-      - 4
-      - 5
-    level: 5
-    positionalValue: true
-    prize: 1000.00  #1,000.00
-
-  - rule: 3th 3 Numbers Correct
-    positions:
-      - 2
-      - 3
-      - 4
-    level: 6
-    positionalValue: true
-    prize: 100.00  #1,00.00
-
-  - rule: 2th 2 Numbers Correct
-    positions:
-      - 2
-      - 3
-    level: 7
-    positionalValue: true
-    prize: 50.00  #50.00
-
-  - rule: Letter Correct
+  - rule: Letter and any 2 numbers correct
     positions:
       - 1
+    nonFixedPositions:
+      - 2: [ 2, 3, 4, 5]
+      - 3: [ 2, 3, 4, 5]
+      - 4: [ 2, 3, 4, 5]
+      - 5: [ 2, 3, 4, 5]
+    level: 5
+    positionalValue: true
+    nonFixedType: number
+    matchingCount: 3
+    prize: 1000.00  #1,000.00
+
+  - rule: Any 2 numbers correct
+    positions:
+    nonFixedPositions:
+      - 2: [ 2, 3, 4, 5]
+      - 3: [ 2, 3, 4, 5]
+      - 4: [ 2, 3, 4, 5]
+      - 5: [ 2, 3, 4, 5]
+    level: 6
+    positionalValue: true
+    nonFixedType: number
+    matchingCount: 2
+    prize: 100.00  #100.00
+
+  - rule: Letter and any number correct
+    positions:
+      - 1
+    nonFixedPositions:
+      - 2: [ 2, 3, 4, 5]
+      - 3: [ 2, 3, 4, 5]
+      - 4: [ 2, 3, 4, 5]
+      - 5: [ 2, 3, 4, 5]
     level: 8
     positionalValue: true
-    prize: 20.00  #20.00
+    nonFixedType: number
+    matchingCount: 2
+    prize: 40.00  #20.00
 
+
+  - rule: Any Number Correct
+    positions:
+    nonFixedPositions:
+      - 2: [ 2, 3, 4, 5]
+      - 3: [ 2, 3, 4, 5]
+      - 4: [ 2, 3, 4, 5]
+      - 5: [ 2, 3, 4, 5]
+    level: 4
+    positionalValue: true
+    nonFixedType: number
+    matchingCount: 1
+    prize: 20.00  #10,000.00
+
+  - rule: Letter correct
+    positions:
+      - 1
+    level: 5
+    positionalValue: true
+    matchingCount: 1
+    prize: 20.00  #1,000.00

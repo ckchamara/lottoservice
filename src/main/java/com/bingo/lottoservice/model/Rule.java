@@ -6,47 +6,36 @@ public class Rule {
     private String rule;
     private List<Integer> positions;
     private int level;
-
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
-    }
-
     private Boolean positionalValue;
+    private String nonFixedType;
+    private int matchingCount;
     private double prize;
 
     public String getRule() {
         return rule;
     }
 
-    public void setRule(String rule) {
-        this.rule = rule;
-    }
-
     public List<Integer> getPositions() {
         return positions;
     }
 
-    public void setPositions(List<Integer> positions) {
-        this.positions = positions;
+    public int getLevel() {
+        return level;
     }
 
     public Boolean getPositionalValue() {
         return positionalValue;
     }
 
-    public void setPositionalValue(Boolean positionalValue) {
-        this.positionalValue = positionalValue;
+    public String getNonFixedType() {
+        return nonFixedType;
+    }
+
+    public int getMatchingCount() {
+        return matchingCount;
     }
 
     public double getPrize() {
         return prize;
-    }
-
-    public void setPrize(double prize) {
-        this.prize = prize;
     }
 }
