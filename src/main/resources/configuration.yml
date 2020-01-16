@@ -24,7 +24,10 @@ rules:
       - 6
       - 7
     level: 1
+    nonFixedPositions:
     positionalValue: true
+    nonFixedType: number
+    matchingCount: 4
     prize: 10000000.00  #10,000,000.00
 
   - rule: 6th 6 Numbers Correct

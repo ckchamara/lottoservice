@@ -18,6 +18,8 @@ public class CombinationCheck {
     private Configuration configuration = LoadYAML.load(Configuration.class, "configuration.yml");
     private Result result = LoadYAML.load(Result.class, "result.yml");
     private Lottery lottery = LoadYAML.load(Lottery.class, "lottery.yml");
+    private Configuration govisetha = LoadYAML.load(Configuration.class, "govisetha_config.yml");
+
 
     public void print() {
         System.out.println(configuration.getId());
