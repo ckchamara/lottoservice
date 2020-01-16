@@ -35,6 +35,12 @@ public class CombinationCheck {
         LinkedHashMap<Integer, Object> resultPositions = mergeHashmaps(result.getPositions());
         LinkedHashMap<Integer, String> lotteryPositionTypes = mergeHashmaps(configuration.getPositions());
         LinkedHashMap<Integer, Object> lotteryPositions = mergeHashmaps(lottery.getPositions());
+        LinkedHashMap<Integer, ArrayList<Integer>> nonfixedPositions = null;
+//        govisetha.getRules().listIterator().forEachRemaining(e -> nonfixedPositions[0] =mergeHashmaps(e.getNonFixedPositions()));
+        govisetha.getRules().listIterator()
+                .forEachRemaining(rule->rule.getNonFixedPositions().stream().filter(x -> x!=null));
+
+
         //get config rule
         ruleCheckingLoop:
         for (Rule rule:configuration.getRules()) {
@@ -91,7 +97,7 @@ public class CombinationCheck {
         return arrayList;
     }
 
-    public LinkedHashMap<Integer,Object> merge(ArrayList<LinkedHashMap<Integer, Object>> mapList){
+    public LinkedHashMap<Integer,Object> mergeHash(ArrayList<LinkedHashMap<Integer, Object>> mapList){
         LinkedHashMap<Integer, Object> mergeMap = new LinkedHashMap<>();
         for (LinkedHashMap<Integer,Object> singleMap:mapList) {
             mergeMap.putAll(singleMap);
@@ -99,11 +105,20 @@ public class CombinationCheck {
        return mergeMap;
     }
 
-    public <T, V> LinkedHashMap<T, V> mergeHashmaps(ArrayList<LinkedHashMap<T, V>> mapList) {
+    public static <T, V> LinkedHashMap<T, V> mergeHashmaps(ArrayList<LinkedHashMap<T, V>> mapList) {
         LinkedHashMap<T, V> mergeMap = new LinkedHashMap<>();
         for (LinkedHashMap<T,V> singleMap:mapList) {
             mergeMap.putAll(singleMap);
         }
         return mergeMap;
     }
+    public static LinkedHashMap mergeHashmu(ArrayList<LinkedHashMap> mapList) {
+        LinkedHashMap mergeMap = new LinkedHashMap<>();
+        for (LinkedHashMap singleMap:mapList) {
+            mergeMap.putAll(singleMap);
+        }
+        return mergeMap;
+    }
+
+
 }
