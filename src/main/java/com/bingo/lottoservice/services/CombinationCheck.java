@@ -25,6 +25,16 @@ public class CombinationCheck {
         System.out.println(configuration.getId());
         System.out.println(result.getName());
         System.out.println(lottery.getName());
+
+//        for (Rule rule:govisetha.getRules()) {
+//            if (rule.getNonFixedPositions()!=null){
+//                System.out.println(rule.getNonFixedPositions() + rule.getRule());
+//            }
+//        }
+
+        govisetha.getRules().stream()
+                .filter(rule -> rule.getNonFixedPositions() != null)
+                .forEach(rule -> System.out.println(rule.getNonFixedPositions() + rule.getRule()));
     }
 
     public void checkReward() throws Exception {
@@ -36,11 +46,8 @@ public class CombinationCheck {
         LinkedHashMap<Integer, String> lotteryPositionTypes = mergeHashmaps(configuration.getPositions());
         LinkedHashMap<Integer, Object> lotteryPositions = mergeHashmaps(lottery.getPositions());
         LinkedHashMap<Integer, ArrayList<Integer>> nonfixedPositions = null;
-//        govisetha.getRules().listIterator().forEachRemaining(e -> nonfixedPositions[0] =mergeHashmaps(e.getNonFixedPositions()));
-        govisetha.getRules().listIterator()
-                .forEachRemaining(rule->rule.getNonFixedPositions().stream().filter(x -> x!=null));
-
-
+//        govisetha.getRules().listIterator()
+//                .forEachRemaining(rule->rule.getNonFixedPositions().stream().filter(x -> x!=null));
         //get config rule
         ruleCheckingLoop:
         for (Rule rule:configuration.getRules()) {
