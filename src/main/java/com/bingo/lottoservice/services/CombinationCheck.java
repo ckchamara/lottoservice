@@ -27,12 +27,6 @@ public class CombinationCheck {
         System.out.println(result.getName());
         System.out.println(lottery.getName());
 
-//        for (Rule rule:govisetha.getRules()) {
-//            if (rule.getNonFixedPositions()!=null){
-//                System.out.println(rule.getNonFixedPositions() + rule.getRule());
-//            }
-//        }
-
         configuration.getRules().stream()
                 .filter(rule -> rule.getNonFixedPositions() != null)
                 .forEach(rule -> System.out.println(rule.getNonFixedPositions() + rule.getRule()));
@@ -54,8 +48,7 @@ public class CombinationCheck {
         for (Rule rule:configuration.getRules()) {
             System.out.println(rule.getRule());
             matchingPositions = new ArrayList<>();
-            List<Integer> fixMatchingPositions = new ArrayList<>();
-            List<Integer> nonFixMatchingPositions = new ArrayList<>();
+
             //logic for fixed positions
             if (rule.getPositions() != null) {
                 for (int rulePosition : rule.getPositions()) {
@@ -104,9 +97,7 @@ public class CombinationCheck {
                     }
                 }
             }
-//
-//            matchingPositions.addAll(nonFixMatchingPositions);
-//            matchingPositions.addAll(fixMatchingPositions);
+
             ruleName = rule.getRule();
             rewardPrize = rule.getPrize();
             if (matchingPositions.size() == rule.getMatchingCount())
