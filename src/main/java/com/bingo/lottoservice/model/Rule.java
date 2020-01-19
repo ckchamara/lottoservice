@@ -1,25 +1,23 @@
 package com.bingo.lottoservice.model;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 public class Rule {
 
     private String rule;
     private List<Integer> positions;
-    private ArrayList<LinkedHashMap<Integer,ArrayList<Integer>>> nonFixedPositions;
+    private List<Integer> nonFixedPositions;
     private int level;
     private Boolean positionalValue;
     private String nonFixedType;
     private int matchingCount;
     private double prize;
 
-    public ArrayList<LinkedHashMap<Integer, ArrayList<Integer>>> getNonFixedPositions() {
+    public List<Integer> getNonFixedPositions() {
         return nonFixedPositions;
     }
 
-    public void setNonFixedPositions(ArrayList<LinkedHashMap<Integer, ArrayList<Integer>>> nonFixedPositions) {
+    public void setNonFixedPositions(List<Integer> nonFixedPositions) {
         this.nonFixedPositions = nonFixedPositions;
     }
 

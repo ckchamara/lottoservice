@@ -39,10 +39,10 @@ rules:
     positions:
       - 1
     nonFixedPositions:
-      - 2: [ 2, 3, 4, 5]
-      - 3: [ 2, 3, 4, 5]
-      - 4: [ 2, 3, 4, 5]
-      - 5: [ 2, 3, 4, 5]
+      - 2
+      - 3
+      - 4
+      - 5
     level: 3
     positionalValue: false
     nonFixedType: number
@@ -52,10 +52,10 @@ rules:
   - rule: Any 3 numbers correct
     positions:
     nonFixedPositions:
-      - 2: [ 2, 3, 4, 5]
-      - 3: [ 2, 3, 4, 5]
-      - 4: [ 2, 3, 4, 5]
-      - 5: [ 2, 3, 4, 5]
+      - 2
+      - 3
+      - 4
+      - 5
     level: 4
     positionalValue: false
     nonFixedType: number
@@ -66,10 +66,10 @@ rules:
     positions:
       - 1
     nonFixedPositions:
-      - 2: [ 2, 3, 4, 5]
-      - 3: [ 2, 3, 4, 5]
-      - 4: [ 2, 3, 4, 5]
-      - 5: [ 2, 3, 4, 5]
+      - 2
+      - 3
+      - 4
+      - 5
     level: 5
     positionalValue: true
     nonFixedType: number
@@ -79,10 +79,10 @@ rules:
   - rule: Any 2 numbers correct
     positions:
     nonFixedPositions:
-      - 2: [ 2, 3, 4, 5]
-      - 3: [ 2, 3, 4, 5]
-      - 4: [ 2, 3, 4, 5]
-      - 5: [ 2, 3, 4, 5]
+      - 2
+      - 3
+      - 4
+      - 5
     level: 6
     positionalValue: true
     nonFixedType: number
@@ -93,10 +93,10 @@ rules:
     positions:
       - 1
     nonFixedPositions:
-      - 2: [ 2, 3, 4, 5]
-      - 3: [ 2, 3, 4, 5]
-      - 4: [ 2, 3, 4, 5]
-      - 5: [ 2, 3, 4, 5]
+      - 2
+      - 3
+      - 4
+      - 5
     level: 8
     positionalValue: true
     nonFixedType: number
@@ -107,10 +107,10 @@ rules:
   - rule: Any Number Correct
     positions:
     nonFixedPositions:
-      - 2: [ 2, 3, 4, 5]
-      - 3: [ 2, 3, 4, 5]
-      - 4: [ 2, 3, 4, 5]
-      - 5: [ 2, 3, 4, 5]
+      - 2
+      - 3
+      - 4
+      - 5
     level: 4
     positionalValue: true
     nonFixedType: number
