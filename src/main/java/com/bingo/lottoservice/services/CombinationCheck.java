@@ -76,7 +76,8 @@ public class CombinationCheck {
             if (rule.getNonFixedPositions() != null) {
                 for (int nonFixPosition : rule.getNonFixedPositions()) {
                     System.out.println("Non-Fix " + nonFixPosition);
-                    if (checkPositionIndexType(nonFixPosition, lotteryPositionTypes).equals("number")) {
+                    if (checkPositionIndexType(nonFixPosition, lotteryPositionTypes).equals("number") ||
+                            checkPositionIndexType(nonFixPosition, lotteryPositionTypes).equals("letter")) {
 
                         List<Integer> filteredIndices = resultPositions.keySet().stream()
                                 .filter(resultIndex -> checkPositionIndexType(resultIndex, lotteryPositionTypes).equals("number"))
