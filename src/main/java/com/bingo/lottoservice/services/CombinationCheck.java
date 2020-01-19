@@ -46,8 +46,7 @@ public class CombinationCheck {
         LinkedHashMap<Integer, String> lotteryPositionTypes = mergeHashmaps(configuration.getPositions());
         LinkedHashMap<Integer, Object> lotteryPositions = mergeHashmaps(lottery.getPositions());
         LinkedHashMap<Integer, ArrayList<Integer>> nonfixedPositions = null;
-//        govisetha.getRules().listIterator()
-//                .forEachRemaining(rule->rule.getNonFixedPositions().stream().filter(x -> x!=null));
+
         //get config rule
         ruleCheckingLoop:
         for (Rule rule:configuration.getRules()) {
