@@ -83,6 +83,7 @@ public class CombinationCheck {
                                 .filter(resultIndex -> checkPositionIndexType(resultIndex, lotteryPositionTypes).equals("number"))
                                 .collect(Collectors.toList());
 
+                        //if identical values exist in lottry -> check
                         for (int filteredIndex : filteredIndices) {
                             if (lotteryPositions.get(filteredIndex).toString()
                                     .equals(resultPositions.get(nonFixPosition).toString())) {
