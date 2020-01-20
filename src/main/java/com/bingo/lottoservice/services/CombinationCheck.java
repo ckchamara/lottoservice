@@ -63,7 +63,9 @@ public class CombinationCheck {
                         if (resultPositions.get(rulePosition).toString()
                                 .equals(lotteryPositions.get(rulePosition).toString())) {
                             matchingPositions.add(rulePosition);
-                        } else break;
+                        } else {
+                            break;
+                        }
                     } else
                         throw new Exception("Invalid Lottery configuration number type"); //throw exception here - invalid lottery type
 
@@ -84,9 +86,9 @@ public class CombinationCheck {
 
                         //if identical values exist in lottry -> check
                         for (int filteredIndex : filteredIndices) {
-                            if (lotteryPositions.get(filteredIndex).toString()
-                                    .equals(resultPositions.get(nonFixPosition).toString())) {
-                                matchingPositions.add(filteredIndex);
+                            if (lotteryPositions.get(nonFixPosition).toString()
+                                    .equals(resultPositions.get(filteredIndex).toString())) {
+                                matchingPositions.add(nonFixPosition);
                                 break;
                             }
                         }
