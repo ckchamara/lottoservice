@@ -76,8 +76,7 @@ public class CombinationCheck {
             if (rule.getNonFixedPositions() != null) {
                 for (int nonFixPosition : rule.getNonFixedPositions()) {
                     System.out.println("Non-Fix " + nonFixPosition);
-                    if (checkPositionIndexType(nonFixPosition, lotteryPositionTypes).equals("number") ||
-                            checkPositionIndexType(nonFixPosition, lotteryPositionTypes).equals("letter")) {
+                    if (checkPositionIndexType(nonFixPosition, lotteryPositionTypes).equals("number")) {
 
                         List<Integer> filteredIndices = resultPositions.keySet().stream()
                                 .filter(resultIndex -> checkPositionIndexType(resultIndex, lotteryPositionTypes).equals("number"))
@@ -88,14 +87,13 @@ public class CombinationCheck {
                             if (lotteryPositions.get(filteredIndex).toString()
                                     .equals(resultPositions.get(nonFixPosition).toString())) {
                                 matchingPositions.add(filteredIndex);
-
-                                ruleName = rule.getRule();
-                                rewardPrize = rule.getPrize();
-                                if (matchingPositions.size() == rule.getMatchingCount())
-                                    break ruleCheckingLoop;
-
+                                break;
                             }
                         }
+                        ruleName = rule.getRule();
+                        rewardPrize = rule.getPrize();
+                        if (matchingPositions.size() == rule.getMatchingCount())
+                            break ruleCheckingLoop;
                     }
                 }
             }
