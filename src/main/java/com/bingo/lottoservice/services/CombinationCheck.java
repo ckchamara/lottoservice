@@ -16,7 +16,7 @@ public class CombinationCheck {
     public CombinationCheck() throws IOException {
     }
 
-    //    private Configuration configuration = LoadYAML.load(Configuration.class, "configuration.yml");
+//    private Configuration configuration = LoadYAML.load(Configuration.class, "mahajana_sampatha.yml");
     private Result result = LoadYAML.load(Result.class, "result.yml");
     private Lottery lottery = LoadYAML.load(Lottery.class, "lottery.yml");
     private Configuration configuration = LoadYAML.load(Configuration.class, "govisetha_config.yml");
@@ -38,9 +38,8 @@ public class CombinationCheck {
         String ruleName = null;
         //get result positions
         LinkedHashMap<Integer, Object> resultPositions = mergeHashmaps(result.getPositions());
-//        LinkedHashMap<Integer, String> lotteryPositionTypes = mergeHashmaps(configuration.getPositions());
-        LinkedHashMap<Integer, Object> lotteryPositions = mergeHashmaps(lottery.getPositions());
         LinkedHashMap<Integer, String> lotteryPositionTypes = mergeHashmaps(configuration.getPositions());
+        LinkedHashMap<Integer, Object> lotteryPositions = mergeHashmaps(lottery.getPositions());
         LinkedHashMap<Integer, ArrayList<Integer>> nonfixedPositions = null;
 
         //get config rule
@@ -48,6 +47,7 @@ public class CombinationCheck {
         for (Rule rule:configuration.getRules()) {
             System.out.println(rule.getRule());
             matchingPositions = new ArrayList<>();
+            boolean noMatchingPositionalValues = false;
 
             //logic for fixed positions
             if (rule.getPositions() != null) {
@@ -58,12 +58,16 @@ public class CombinationCheck {
                         if (resultPositions.get(rulePosition).toString()
                                 .equals(lotteryPositions.get(rulePosition).toString())) {
                             matchingPositions.add(rulePosition);
-                        } else break;
+                        } else {
+                            noMatchingPositionalValues = true;
+                            break;
+                        }
                     } else if ("letter".equals(lotteryPositionTypes.get(rulePosition))) {
                         if (resultPositions.get(rulePosition).toString()
                                 .equals(lotteryPositions.get(rulePosition).toString())) {
                             matchingPositions.add(rulePosition);
                         } else {
+                            noMatchingPositionalValues = true;
                             break;
                         }
                     } else
@@ -75,7 +79,7 @@ public class CombinationCheck {
             }
 
             //logic for non-fixed positions
-            if (rule.getNonFixedPositions() != null) {
+            if (rule.getNonFixedPositions() != null && noMatchingPositionalValues == false) {
                 for (int nonFixPosition : rule.getNonFixedPositions()) {
                     System.out.println("Non-Fix " + nonFixPosition);
                     if (checkPositionIndexType(nonFixPosition, lotteryPositionTypes).equals("number")) {
@@ -84,7 +88,7 @@ public class CombinationCheck {
                                 .filter(resultIndex -> checkPositionIndexType(resultIndex, lotteryPositionTypes).equals("number"))
                                 .collect(Collectors.toList());
 
-                        //if identical values exist in lottry -> check
+                        //if identical values exist in lottery -> check
                         for (int filteredIndex : filteredIndices) {
                             if (lotteryPositions.get(nonFixPosition).toString()
                                     .equals(resultPositions.get(filteredIndex).toString())) {
