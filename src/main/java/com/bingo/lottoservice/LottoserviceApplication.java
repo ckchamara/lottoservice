@@ -16,7 +16,7 @@ public class LottoserviceApplication {
 		//combinationCheck.print();
 		try {
 			combinationCheck.checkReward();
-			combinationCheck.print();
+//			combinationCheck.print();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
