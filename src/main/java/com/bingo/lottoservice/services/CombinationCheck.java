@@ -33,6 +33,51 @@ public class CombinationCheck {
                 .forEach(rule -> System.out.println(rule.getNonFixedPositions() + rule.getRule()));
     }
 
+    private static <T, V> LinkedHashMap<T, V> mergeHashmaps(ArrayList<LinkedHashMap<T, V>> mapList) {
+        LinkedHashMap<T, V> mergeMap = new LinkedHashMap<>();
+        for (LinkedHashMap<T, V> singleMap : mapList) {
+            mergeMap.putAll(singleMap);
+        }
+        return mergeMap;
+    }
+
+    public boolean compareLottreryResultMatch(Object resultValue, int resultPosition) {
+        ArrayList<LinkedHashMap<Integer, Object>> lotteryPositions = lottery.getPositions();
+        for (LinkedHashMap<Integer, Object> lotteryPosition : lotteryPositions) {
+            if (lotteryPosition.get(resultPosition) == resultValue) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //combine all the LinkedHashMapa into one
+    public List<Integer> extractMapValuesToList(ArrayList<LinkedHashMap<Integer, Object>> mapList) {
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        for (LinkedHashMap<Integer, Object> map : mapList) {
+            map.values().stream()
+                    .filter(e -> NumberUtils.isCreatable(e.toString()))
+                    .forEach(e -> arrayList.add(Integer.valueOf(e.toString())));
+        }
+        return arrayList;
+    }
+
+    public LinkedHashMap<Integer, Object> mergeHash(ArrayList<LinkedHashMap<Integer, Object>> mapList) {
+        LinkedHashMap<Integer, Object> mergeMap = new LinkedHashMap<>();
+        for (LinkedHashMap<Integer, Object> singleMap : mapList) {
+            mergeMap.putAll(singleMap);
+        }
+        return mergeMap;
+    }
+
+    public static LinkedHashMap<Object, Object> mergeHashmu(ArrayList<LinkedHashMap<Object, Object>> mapList) {
+        LinkedHashMap<Object, Object> mergeMap = new LinkedHashMap<>();
+        for (LinkedHashMap<Object, Object> singleMap : mapList) {
+            mergeMap.putAll(singleMap);
+        }
+        return mergeMap;
+    }
+
     public void checkReward() throws Exception {
         double rewardPrize = 0;
         List<Integer> matchingPositions = null;
@@ -77,7 +122,7 @@ public class CombinationCheck {
             }
 
             //logic for non-fixed positions
-            if (rule.getNonFixedPositions() != null && noMatchingPositionalValues == false) {
+            if (rule.getNonFixedPositions() != null && !noMatchingPositionalValues) {
                 for (int nonFixPosition : rule.getNonFixedPositions()) {
                     System.out.println("Non-Fix " + nonFixPosition);
                     if (checkPositionIndexType(nonFixPosition, lotteryPositionTypes).equals("number")) {
@@ -131,51 +176,7 @@ public class CombinationCheck {
         System.out.println(rewardAndValues);
     }
 
-    public boolean compareLottreryResultMatch(Object resultValue,int resultPosition){
-        ArrayList<LinkedHashMap<Integer,Object>> lotteryPositions = lottery.getPositions();
-        for (LinkedHashMap<Integer,Object> lotteryPosition: lotteryPositions) {
-            if (lotteryPosition.get(resultPosition) == resultValue){
-                return true;
-            }
-        }
-        return false;
-    }
-
-    //combine all the LinkedHashMapa into one
-    public List<Integer> extractMapValuesToList(ArrayList<LinkedHashMap<Integer, Object>> mapList){
-        ArrayList<Integer> arrayList = new ArrayList<>();
-        for (LinkedHashMap<Integer, Object> map:mapList) {
-            map.values().stream()
-                    .filter(e -> NumberUtils.isCreatable(e.toString()))
-                    .forEach(e -> arrayList.add(Integer.valueOf(e.toString())));
-        }
-        return arrayList;
-    }
-
-    public LinkedHashMap<Integer,Object> mergeHash(ArrayList<LinkedHashMap<Integer, Object>> mapList){
-        LinkedHashMap<Integer, Object> mergeMap = new LinkedHashMap<>();
-        for (LinkedHashMap<Integer,Object> singleMap:mapList) {
-            mergeMap.putAll(singleMap);
-        }
-       return mergeMap;
-    }
-
-    public static <T, V> LinkedHashMap<T, V> mergeHashmaps(ArrayList<LinkedHashMap<T, V>> mapList) {
-        LinkedHashMap<T, V> mergeMap = new LinkedHashMap<>();
-        for (LinkedHashMap<T,V> singleMap:mapList) {
-            mergeMap.putAll(singleMap);
-        }
-        return mergeMap;
-    }
-    public static LinkedHashMap mergeHashmu(ArrayList<LinkedHashMap> mapList) {
-        LinkedHashMap mergeMap = new LinkedHashMap<>();
-        for (LinkedHashMap singleMap:mapList) {
-            mergeMap.putAll(singleMap);
-        }
-        return mergeMap;
-    }
-
-    public String checkPositionIndexType(int positionIndex, LinkedHashMap<Integer, String> lotteryPositionTypes) {
+    private String checkPositionIndexType(int positionIndex, LinkedHashMap<Integer, String> lotteryPositionTypes) {
         if (lotteryPositionTypes.get(positionIndex).equals("number"))
             return "number";
         else if (lotteryPositionTypes.get(positionIndex).equals("letter"))
