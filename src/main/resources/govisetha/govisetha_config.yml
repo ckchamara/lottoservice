@@ -15,7 +15,6 @@ rules:
   - rule: Letter and 4 Numbers Correct
     positions:
       - 1
-    nonFixedPositions:
       - 2
       - 3
       - 4

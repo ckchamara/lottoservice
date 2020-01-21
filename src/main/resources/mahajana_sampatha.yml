@@ -26,8 +26,8 @@ rules:
     level: 1
     nonFixedPositions:
     positionalValue: true
-    nonFixedType: number
-    matchingCount: 4
+    nonFixedType:
+    matchingCount: 7
     prize: 10000000.00  #10,000,000.00
 
   - rule: 6th 6 Numbers Correct
@@ -40,6 +40,7 @@ rules:
       - 7
     level: 2
     positionalValue: true
+    matchingCount: 6
     prize: 2000000.00  #2,000,000.00
 
   - rule: 6th 5 Numbers Correct
@@ -51,6 +52,7 @@ rules:
       - 7
     level: 3
     positionalValue: true
+    matchingCount: 5
     prize: 100000.00  #100,000.00
 
   - rule: 6th 4 Numbers Correct
@@ -61,6 +63,7 @@ rules:
       - 7
     level: 4
     positionalValue: true
+    matchingCount: 4
     prize: 10000.00  #10,000.00
 
   - rule: 6th 3 Numbers Correct
@@ -70,6 +73,7 @@ rules:
       - 7
     level: 5
     positionalValue: true
+    matchingCount: 3
     prize: 1000.00  #1,000.00
 
   - rule: 6th 2 Numbers Correct
@@ -78,6 +82,7 @@ rules:
       - 7
     level: 6
     positionalValue: true
+    matchingCount: 2
     prize: 100.00  #100.00
 
   - rule: 6th Number Correct
@@ -85,6 +90,7 @@ rules:
       - 7
     level: 8
     positionalValue: true
+    matchingCount: 1
     prize: 20.00  #20.00
 
 
@@ -97,6 +103,7 @@ rules:
       - 6
     level: 4
     positionalValue: true
+    matchingCount: 5
     prize: 10000.00  #10,000.00
 
   - rule: 4th 4 Numbers Correct
@@ -107,6 +114,7 @@ rules:
       - 5
     level: 5
     positionalValue: true
+    matchingCount: 4
     prize: 1000.00  #1,000.00
 
   - rule: 3th 3 Numbers Correct
@@ -116,6 +124,7 @@ rules:
       - 4
     level: 6
     positionalValue: true
+    matchingCount: 3
     prize: 100.00  #1,00.00
 
   - rule: 2th 2 Numbers Correct
@@ -124,6 +133,7 @@ rules:
       - 3
     level: 7
     positionalValue: true
+    matchingCount: 2
     prize: 50.00  #50.00
 
   - rule: Letter Correct
@@ -131,5 +141,6 @@ rules:
       - 1
     level: 8
     positionalValue: true
+    matchingCount: 1
     prize: 20.00  #20.00
 
