@@ -5,7 +5,6 @@ import com.bingo.lottoservice.model.Lottery;
 import com.bingo.lottoservice.model.Result;
 import com.bingo.lottoservice.model.Rule;
 import com.bingo.lottoservice.utils.LoadYAML;
-import org.apache.commons.lang3.math.NumberUtils;
 
 import java.io.IOException;
 import java.util.*;
@@ -36,43 +35,6 @@ public class CombinationCheck {
     private static <T, V> LinkedHashMap<T, V> mergeHashmaps(ArrayList<LinkedHashMap<T, V>> mapList) {
         LinkedHashMap<T, V> mergeMap = new LinkedHashMap<>();
         for (LinkedHashMap<T, V> singleMap : mapList) {
-            mergeMap.putAll(singleMap);
-        }
-        return mergeMap;
-    }
-
-    public boolean compareLottreryResultMatch(Object resultValue, int resultPosition) {
-        ArrayList<LinkedHashMap<Integer, Object>> lotteryPositions = lottery.getPositions();
-        for (LinkedHashMap<Integer, Object> lotteryPosition : lotteryPositions) {
-            if (lotteryPosition.get(resultPosition) == resultValue) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    //combine all the LinkedHashMapa into one
-    public List<Integer> extractMapValuesToList(ArrayList<LinkedHashMap<Integer, Object>> mapList) {
-        ArrayList<Integer> arrayList = new ArrayList<>();
-        for (LinkedHashMap<Integer, Object> map : mapList) {
-            map.values().stream()
-                    .filter(e -> NumberUtils.isCreatable(e.toString()))
-                    .forEach(e -> arrayList.add(Integer.valueOf(e.toString())));
-        }
-        return arrayList;
-    }
-
-    public LinkedHashMap<Integer, Object> mergeHash(ArrayList<LinkedHashMap<Integer, Object>> mapList) {
-        LinkedHashMap<Integer, Object> mergeMap = new LinkedHashMap<>();
-        for (LinkedHashMap<Integer, Object> singleMap : mapList) {
-            mergeMap.putAll(singleMap);
-        }
-        return mergeMap;
-    }
-
-    public static LinkedHashMap<Object, Object> mergeHashmu(ArrayList<LinkedHashMap<Object, Object>> mapList) {
-        LinkedHashMap<Object, Object> mergeMap = new LinkedHashMap<>();
-        for (LinkedHashMap<Object, Object> singleMap : mapList) {
             mergeMap.putAll(singleMap);
         }
         return mergeMap;
@@ -127,6 +89,7 @@ public class CombinationCheck {
                     System.out.println("Non-Fix " + nonFixPosition);
                     if (checkPositionIndexType(nonFixPosition, lotteryPositionTypes).equals("number")) {
 
+                        //filter only number indices
                         List<Integer> filteredIndices = resultPositions.keySet()
                                 .stream()
                                 .filter(resultIndex -> checkPositionIndexType(resultIndex, lotteryPositionTypes).equals("number"))
@@ -140,7 +103,8 @@ public class CombinationCheck {
                                 .filter(entry -> existing.add(entry.getValue()))
                                 .collect((Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (x, y) -> y, LinkedHashMap::new)));
                         int identicalLotteryNumberCount = lotteryPositions.size();
-                        if (origilalLotteryNumbrCount != identicalLotteryNumberCount) {
+                        boolean isDuplicateValuesExsist = origilalLotteryNumbrCount != identicalLotteryNumberCount;
+                        if (isDuplicateValuesExsist) {
                             for (int numberPosition = 1; numberPosition <= origilalLotteryNumbrCount; numberPosition++) {
                                 if (!lotteryPositions.keySet().contains(numberPosition)) {
                                     lotteryPositions.put(numberPosition, -1);
