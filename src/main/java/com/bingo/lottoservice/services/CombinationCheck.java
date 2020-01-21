@@ -89,11 +89,22 @@ public class CombinationCheck {
                                 .filter(resultIndex -> checkPositionIndexType(resultIndex, lotteryPositionTypes).equals("number"))
                                 .collect(Collectors.toList());
 
-//                        Set<Object> existing = new HashSet<>();
-//                        lotteryPositions = lotteryPositions.entrySet()
-//                                .stream()
-//                                .filter(entry -> existing.add(entry.getValue()))
-//                                .collect(Collectors.toMap());
+                        //Eliminate Duplicates and fill dplicate values with -1
+                        Set<Object> existing = new HashSet<>();
+                        int origilalLotteryNumbrCount = lotteryPositions.size();
+                        lotteryPositions = lotteryPositions.entrySet()
+                                .stream()
+                                .filter(entry -> existing.add(entry.getValue()))
+                                .collect((Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (x, y) -> y, LinkedHashMap::new)));
+                        int identicalLotteryNumberCount = lotteryPositions.size();
+                        int differenceCount = -1;
+                        if (origilalLotteryNumbrCount != identicalLotteryNumberCount) {
+                            differenceCount = origilalLotteryNumbrCount - identicalLotteryNumberCount;
+                            for (int i = 0; i < differenceCount; i++) {
+                                int index = ++identicalLotteryNumberCount;
+                                lotteryPositions.put(index, -1);
+                            }
+                        }
 
                         //if identical values exist in lottery -> check
                         for (int filteredIndex : filteredIndices) {
