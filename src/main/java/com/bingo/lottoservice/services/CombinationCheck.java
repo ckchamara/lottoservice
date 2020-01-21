@@ -97,16 +97,15 @@ public class CombinationCheck {
                                 .filter(entry -> existing.add(entry.getValue()))
                                 .collect((Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (x, y) -> y, LinkedHashMap::new)));
                         int identicalLotteryNumberCount = lotteryPositions.size();
-                        int differenceCount = -1;
                         if (origilalLotteryNumbrCount != identicalLotteryNumberCount) {
-                            differenceCount = origilalLotteryNumbrCount - identicalLotteryNumberCount;
-                            for (int i = 0; i < differenceCount; i++) {
-                                int index = ++identicalLotteryNumberCount;
-                                lotteryPositions.put(index, -1);
+                            for (int i = 1; i <= origilalLotteryNumbrCount; i++) {
+                                if (!lotteryPositions.keySet().contains(i)) {
+                                    lotteryPositions.put(i, -1);
+                                }
+
                             }
                         }
 
-                        //if identical values exist in lottery -> check
                         for (int filteredIndex : filteredIndices) {
                             if (lotteryPositions.get(nonFixPosition).toString()
                                     .equals(resultPositions.get(filteredIndex).toString())) {
