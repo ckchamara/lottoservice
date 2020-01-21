@@ -100,7 +100,6 @@ public class CombinationCheck {
                                 if (!lotteryPositions.keySet().contains(numberPosition)) {
                                     lotteryPositions.put(numberPosition, -1);
                                 }
-
                             }
                         }
 
