@@ -73,8 +73,6 @@ public class CombinationCheck {
                     } else
                         throw new Exception("Invalid Lottery configuration number type"); //throw exception here - invalid lottery type
 
-//                    ruleName = rule.getRule();
-//                    rewardPrize = rule.getPrize();
                 }
             }
 
@@ -98,9 +96,9 @@ public class CombinationCheck {
                                 .collect((Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (x, y) -> y, LinkedHashMap::new)));
                         int identicalLotteryNumberCount = lotteryPositions.size();
                         if (origilalLotteryNumbrCount != identicalLotteryNumberCount) {
-                            for (int i = 1; i <= origilalLotteryNumbrCount; i++) {
-                                if (!lotteryPositions.keySet().contains(i)) {
-                                    lotteryPositions.put(i, -1);
+                            for (int numberPosition = 1; numberPosition <= origilalLotteryNumbrCount; numberPosition++) {
+                                if (!lotteryPositions.keySet().contains(numberPosition)) {
+                                    lotteryPositions.put(numberPosition, -1);
                                 }
 
                             }
