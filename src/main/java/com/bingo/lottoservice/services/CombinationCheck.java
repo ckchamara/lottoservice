@@ -21,7 +21,6 @@ public class CombinationCheck {
 
     }
 
-
     public void print() {
         System.out.println(configuration.getId());
         System.out.println(result.getName());
@@ -79,7 +78,6 @@ public class CombinationCheck {
                         }
                     } else
                         throw new Exception("Invalid Lottery configuration number type"); //throw exception here - invalid lottery type
-
                 }
             }
 
