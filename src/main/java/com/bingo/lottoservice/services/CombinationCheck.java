@@ -7,19 +7,19 @@ import com.bingo.lottoservice.model.Rule;
 import com.bingo.lottoservice.utils.LoadYAML;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class CombinationCheck {
 
-    private Configuration configuration = LoadYAML.load(Configuration.class, "govisetha_config.yml");
+    private Configuration configuration = LoadYAML.load(this.getClass(), Configuration.class, "govisetha/govisetha_config.yml");
+    private Result result = LoadYAML.load(this.getClass(), Result.class, "govisetha/result.yml");
+    private Lottery lottery = LoadYAML.load(this.getClass(), Lottery.class, "govisetha/lottery.yml");
 
-    public CombinationCheck() throws IOException {
+    public CombinationCheck() throws IOException, URISyntaxException {
 
     }
-
-    private Result result = LoadYAML.load(Result.class, "result.yml");
-    private Lottery lottery = LoadYAML.load(Lottery.class, "lottery.yml");
 
 
     public void print() {
