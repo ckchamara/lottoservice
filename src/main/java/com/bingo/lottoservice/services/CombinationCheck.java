@@ -13,13 +13,14 @@ import java.util.stream.Collectors;
 
 public class CombinationCheck {
 
+    private Configuration configuration = LoadYAML.load(Configuration.class, "govisetha_config.yml");
+
     public CombinationCheck() throws IOException {
+
     }
 
-//    private Configuration configuration = LoadYAML.load(Configuration.class, "mahajana_sampatha.yml");
     private Result result = LoadYAML.load(Result.class, "result.yml");
     private Lottery lottery = LoadYAML.load(Lottery.class, "lottery.yml");
-    private Configuration configuration = LoadYAML.load(Configuration.class, "govisetha_config.yml");
 
 
     public void print() {
@@ -40,7 +41,6 @@ public class CombinationCheck {
         LinkedHashMap<Integer, Object> resultPositions = mergeHashmaps(result.getPositions());
         LinkedHashMap<Integer, String> lotteryPositionTypes = mergeHashmaps(configuration.getPositions());
         LinkedHashMap<Integer, Object> lotteryPositions = mergeHashmaps(lottery.getPositions());
-        LinkedHashMap<Integer, ArrayList<Integer>> nonfixedPositions = null;
 
         //get config rule
         ruleCheckingLoop:
@@ -84,9 +84,16 @@ public class CombinationCheck {
                     System.out.println("Non-Fix " + nonFixPosition);
                     if (checkPositionIndexType(nonFixPosition, lotteryPositionTypes).equals("number")) {
 
-                        List<Integer> filteredIndices = resultPositions.keySet().stream()
+                        List<Integer> filteredIndices = resultPositions.keySet()
+                                .stream()
                                 .filter(resultIndex -> checkPositionIndexType(resultIndex, lotteryPositionTypes).equals("number"))
                                 .collect(Collectors.toList());
+
+//                        Set<Object> existing = new HashSet<>();
+//                        lotteryPositions = lotteryPositions.entrySet()
+//                                .stream()
+//                                .filter(entry -> existing.add(entry.getValue()))
+//                                .collect(Collectors.toMap());
 
                         //if identical values exist in lottery -> check
                         for (int filteredIndex : filteredIndices) {
