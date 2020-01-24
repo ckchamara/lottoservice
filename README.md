@@ -1,0 +1,2 @@
+# lottoservice
+Bingo Lottery backend
