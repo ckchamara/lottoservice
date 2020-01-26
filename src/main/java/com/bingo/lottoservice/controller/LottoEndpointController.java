@@ -12,19 +12,24 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping(value = "/cat", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/lottery", produces = MediaType.APPLICATION_JSON_VALUE)
 public class LottoEndpointController {
 
     @RequestMapping(value = "/projects", method = RequestMethod.POST)
     public final ResponseEntity<String> JsonToYaml(@RequestBody String projects) throws JsonProcessingException {
         JsonNode jsonNodeTree = new ObjectMapper().readTree(projects);
         String jsonAsYaml = new YAMLMapper().writeValueAsString(jsonNodeTree);
-//        return jsonAsYaml;
         return new ResponseEntity<>(jsonAsYaml, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/check/{lotteryName}", method = RequestMethod.POST)
+    public ResponseEntity<String> pathParam(@PathVariable(value = "lotteryName") String lotteryName) {
+
+        return new ResponseEntity<>(lotteryName + " chamara", HttpStatus.OK);
+    }
+
     @RequestMapping(value = "/hello/{id}", method = RequestMethod.POST)
-    public ResponseEntity<String> pathParam(@PathVariable(value = "id") String id) {
+    public ResponseEntity<String> pathParam1(@PathVariable(value = "id") String id) {
         return new ResponseEntity<>(id + " chamara", HttpStatus.OK);
     }
 

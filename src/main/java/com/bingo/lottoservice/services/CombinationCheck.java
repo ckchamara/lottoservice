@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class CombinationCheck {
 
-    private Configuration configuration = LoadYAML.load(this.getClass(), Configuration.class, "govisetha/govisetha_config.yml");
+    private Configuration configuration = LoadYAML.load(this.getClass(), Configuration.class, "govisetha/configuration.yml");
     private Result result = LoadYAML.load(this.getClass(), Result.class, "govisetha/result.yml");
     private Lottery lottery = LoadYAML.load(this.getClass(), Lottery.class, "govisetha/lottery.yml");
 
@@ -39,7 +39,7 @@ public class CombinationCheck {
         return mergeMap;
     }
 
-    public void checkReward() throws Exception {
+    public Map<String, Object> checkReward() throws Exception {
         double rewardPrize = 0;
         List<Integer> matchingPositions = null;
         String ruleName = null;
@@ -136,6 +136,8 @@ public class CombinationCheck {
         rewardAndValues.put("positions", matchingPositions);
         rewardAndValues.put("ruleName", ruleName);
         System.out.println(rewardAndValues);
+
+        return rewardAndValues;
     }
 
     private String checkPositionIndexType(int positionIndex, LinkedHashMap<Integer, String> lotteryPositionTypes) {
