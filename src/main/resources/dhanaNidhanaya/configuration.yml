@@ -23,7 +23,7 @@ rules:
     level: 1
     positionalValue: false
     matchingCount: 5
-    prize: 10000000.00  #10,000,000.00
+    prize: 80000000.00  #10,000,000.00
 
   - rule: 4 Numbers Correct
     positions:
@@ -61,7 +61,7 @@ rules:
     positionalValue: false
     nonFixedType: number
     matchingCount: 3
-    prize: 2000.00  #10,000.00
+    prize: 2500.00  #10,000.00
 
   - rule: Letter and any 2 numbers correct
     positions:
@@ -102,7 +102,7 @@ rules:
     positionalValue: true
     nonFixedType: number
     matchingCount: 2
-    prize: 40.00  #20.00
+    prize: 50.00  #20.00
 
 
   - rule: Any Number Correct

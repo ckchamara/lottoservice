@@ -30,7 +30,7 @@ rules:
     matchingCount: 7
     prize: 10000000.00  #10,000,000.00
 
-  - rule: 6th 6 Numbers Correct
+  - rule: 6 Numbers Correct
     positions:
       - 2
       - 3
@@ -43,7 +43,7 @@ rules:
     matchingCount: 6
     prize: 2000000.00  #2,000,000.00
 
-  - rule: 6th 5 Numbers Correct
+  - rule: last 5 Numbers Correct
     positions:
       - 3
       - 4
@@ -55,7 +55,7 @@ rules:
     matchingCount: 5
     prize: 100000.00  #100,000.00
 
-  - rule: 6th 4 Numbers Correct
+  - rule: last 4 Numbers Correct
     positions:
       - 4
       - 5
@@ -66,7 +66,7 @@ rules:
     matchingCount: 4
     prize: 10000.00  #10,000.00
 
-  - rule: 6th 3 Numbers Correct
+  - rule: last 3 Numbers Correct
     positions:
       - 5
       - 6
@@ -76,7 +76,7 @@ rules:
     matchingCount: 3
     prize: 1000.00  #1,000.00
 
-  - rule: 6th 2 Numbers Correct
+  - rule: last 2 Numbers Correct
     positions:
       - 6
       - 7
@@ -85,7 +85,7 @@ rules:
     matchingCount: 2
     prize: 100.00  #100.00
 
-  - rule: 6th Number Correct
+  - rule: Last Number Correct
     positions:
       - 7
     level: 8
@@ -94,7 +94,7 @@ rules:
     prize: 20.00  #20.00
 
 
-  - rule: 5th 5 Numbers Correct
+  - rule: First 5 Numbers Correct
     positions:
       - 2
       - 3
@@ -106,7 +106,7 @@ rules:
     matchingCount: 5
     prize: 10000.00  #10,000.00
 
-  - rule: 4th 4 Numbers Correct
+  - rule: First 4 Numbers Correct
     positions:
       - 2
       - 3
@@ -117,7 +117,7 @@ rules:
     matchingCount: 4
     prize: 1000.00  #1,000.00
 
-  - rule: 3th 3 Numbers Correct
+  - rule: First 3 Numbers Correct
     positions:
       - 2
       - 3
@@ -127,7 +127,7 @@ rules:
     matchingCount: 3
     prize: 100.00  #1,00.00
 
-  - rule: 2th 2 Numbers Correct
+  - rule: First 2 Numbers Correct
     positions:
       - 2
       - 3
@@ -144,3 +144,16 @@ rules:
     matchingCount: 1
     prize: 20.00  #20.00
 
+  - rule: 6 numbers correct
+    nonFixedPositions:
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+    level: 3
+    positionalValue: false
+    nonFixedType: number
+    matchingCount: 6
+    prize: 200.00
