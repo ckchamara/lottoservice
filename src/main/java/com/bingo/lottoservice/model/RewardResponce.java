@@ -7,6 +7,24 @@ public class RewardResponce {
     double reward;
     String ruleName;
     List<Integer> matchingPositions;
+    long timestamp;
+    int drawNo;
+
+    public int getDrawNo() {
+        return drawNo;
+    }
+
+    public void setDrawNo(int drawNo) {
+        this.drawNo = drawNo;
+    }
+
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
+    }
 
     public List<Integer> getMatchingPositions() {
         return matchingPositions;

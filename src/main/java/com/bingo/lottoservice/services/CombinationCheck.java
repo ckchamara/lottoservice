@@ -21,7 +21,7 @@ public class CombinationCheck {
     }
 
     public void setConfig(Lottery Lottery) throws IOException, URISyntaxException {
-        lottery = (Lottery) Lottery;
+        lottery = Lottery;
         configuration = LoadYAML.load(this.getClass(), Configuration.class, lottery.getName() + "/configuration.yml");
         result = LoadYAML.load(this.getClass(), Result.class, lottery.getName() + "/result.yml");
     }
@@ -100,17 +100,18 @@ public class CombinationCheck {
 
                         //Eliminate Duplicates and fill dplicate values with -1
                         Set<Object> existing = new HashSet<>();
-                        int origilalLotteryNumbrCount = lotteryPositions.size();
+                        int originalLotteryNumberCount = lotteryPositions.size();
                         lotteryPositions = lotteryPositions.entrySet()
                                 .stream()
                                 .filter(entry -> existing.add(entry.getValue()))
                                 .collect((Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (x, y) -> y, LinkedHashMap::new)));
                         int identicalLotteryNumberCount = lotteryPositions.size();
-                        boolean isDuplicateValuesExsist = origilalLotteryNumbrCount != identicalLotteryNumberCount;
+                        boolean isDuplicateValuesExsist = originalLotteryNumberCount != identicalLotteryNumberCount;
                         if (isDuplicateValuesExsist) {
-                            for (int numberPosition = 1; numberPosition <= origilalLotteryNumbrCount; numberPosition++) {
+                            for (int numberPosition = 1; numberPosition <= originalLotteryNumberCount; numberPosition++) {
                                 if (!lotteryPositions.keySet().contains(numberPosition)) {
-                                    lotteryPositions.put(numberPosition, -1);
+                                    int duplicateValuePosition = numberPosition;
+                                    lotteryPositions.put(duplicateValuePosition, -1);
                                 }
                             }
                         }
@@ -141,12 +142,15 @@ public class CombinationCheck {
         rewardResponce.setReward(rewardPrize);
         rewardResponce.setRuleName(ruleName);
         rewardResponce.setMatchingPositions(matchingPositions);
-        System.out.println(rewardResponce);
+        rewardResponce.setTimestamp(System.currentTimeMillis());
+        rewardResponce.setDrawNo(result.getDrawNo());
 
         Yaml yaml = new Yaml();
         StringWriter writer = new StringWriter();
         yaml.dump(rewardResponce, writer);
+//        yaml.dumpAs(rewardResponce, Tag.MAP, null);  //without tag
 
+        System.out.println(writer.toString());
         return writer;
 
     }
