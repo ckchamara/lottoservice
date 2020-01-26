@@ -20,12 +20,12 @@ public class LoadYAML {
         return yaml.load(inputStream);
     }
 
-    public static <T> T load1(Class Class, String ymlPath) {
+    public static <T> T loadByString(Class Class, String ymlPath) {
         Yaml yaml = new Yaml();
-        InputStream inputStream = Class.getClass()
-                .getClassLoader()
-                .getResourceAsStream(ymlPath);
-        return yaml.load(inputStream);
+//        InputStream inputStream = Class.getClass()
+//                .getClassLoader()
+//                .getResourceAsStream(ymlPath);
+        return yaml.load(ymlPath);
     }
 
 }

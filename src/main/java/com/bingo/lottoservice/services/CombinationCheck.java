@@ -13,12 +13,18 @@ import java.util.stream.Collectors;
 
 public class CombinationCheck {
 
-    private Configuration configuration = LoadYAML.load(this.getClass(), Configuration.class, "govisetha/configuration.yml");
-    private Result result = LoadYAML.load(this.getClass(), Result.class, "govisetha/result.yml");
-    private Lottery lottery = LoadYAML.load(this.getClass(), Lottery.class, "govisetha/lottery.yml");
+    private Configuration configuration;
+    private Result result;
+    private Lottery lottery;
 
-    public CombinationCheck() throws IOException, URISyntaxException {
+    public CombinationCheck() {
 
+    }
+
+    public void setConfig(Lottery Lottery) throws IOException, URISyntaxException {
+        lottery = (Lottery) Lottery;
+        configuration = LoadYAML.load(this.getClass(), Configuration.class, lottery.getName() + "/configuration.yml");
+        result = LoadYAML.load(this.getClass(), Result.class, lottery.getName() + "/result.yml");
     }
 
     public void print() {
@@ -147,6 +153,5 @@ public class CombinationCheck {
             return "letter";
         return null;
     }
-
 
 }
