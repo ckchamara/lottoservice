@@ -1,26 +1,30 @@
 package com.bingo.lottoservice.services;
 
-import com.bingo.lottoservice.model.Configuration;
-import com.bingo.lottoservice.model.Lottery;
-import com.bingo.lottoservice.model.Result;
-import com.bingo.lottoservice.model.Rule;
+import com.bingo.lottoservice.model.*;
 import com.bingo.lottoservice.utils.LoadYAML;
+import org.yaml.snakeyaml.Yaml;
 
 import java.io.IOException;
+import java.io.StringWriter;
+import java.net.URISyntaxException;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class CombinationCheck {
 
-    private Configuration configuration = LoadYAML.load(Configuration.class, "govisetha_config.yml");
+    private Configuration configuration;
+    private Result result;
+    private Lottery lottery;
 
-    public CombinationCheck() throws IOException {
+    public CombinationCheck() {
 
     }
 
-    private Result result = LoadYAML.load(Result.class, "result.yml");
-    private Lottery lottery = LoadYAML.load(Lottery.class, "lottery.yml");
-
+    public void setConfig(Lottery Lottery) throws IOException, URISyntaxException {
+        lottery = Lottery;
+        configuration = LoadYAML.load(this.getClass(), Configuration.class, lottery.getName() + "/configuration.yml");
+        result = LoadYAML.load(this.getClass(), Result.class, lottery.getName() + "/result.yml");
+    }
 
     public void print() {
         System.out.println(configuration.getId());
@@ -40,7 +44,7 @@ public class CombinationCheck {
         return mergeMap;
     }
 
-    public void checkReward() throws Exception {
+    public StringWriter checkReward() throws Exception {
         double rewardPrize = 0;
         List<Integer> matchingPositions = null;
         String ruleName = null;
@@ -79,7 +83,6 @@ public class CombinationCheck {
                         }
                     } else
                         throw new Exception("Invalid Lottery configuration number type"); //throw exception here - invalid lottery type
-
                 }
             }
 
@@ -97,17 +100,18 @@ public class CombinationCheck {
 
                         //Eliminate Duplicates and fill dplicate values with -1
                         Set<Object> existing = new HashSet<>();
-                        int origilalLotteryNumbrCount = lotteryPositions.size();
+                        int originalLotteryNumberCount = lotteryPositions.size();
                         lotteryPositions = lotteryPositions.entrySet()
                                 .stream()
                                 .filter(entry -> existing.add(entry.getValue()))
                                 .collect((Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (x, y) -> y, LinkedHashMap::new)));
                         int identicalLotteryNumberCount = lotteryPositions.size();
-                        boolean isDuplicateValuesExsist = origilalLotteryNumbrCount != identicalLotteryNumberCount;
+                        boolean isDuplicateValuesExsist = originalLotteryNumberCount != identicalLotteryNumberCount;
                         if (isDuplicateValuesExsist) {
-                            for (int numberPosition = 1; numberPosition <= origilalLotteryNumbrCount; numberPosition++) {
+                            for (int numberPosition = 1; numberPosition <= originalLotteryNumberCount; numberPosition++) {
                                 if (!lotteryPositions.keySet().contains(numberPosition)) {
-                                    lotteryPositions.put(numberPosition, -1);
+                                    int duplicateValuePosition = numberPosition;
+                                    lotteryPositions.put(duplicateValuePosition, -1);
                                 }
                             }
                         }
@@ -133,11 +137,22 @@ public class CombinationCheck {
                 break;
         }
 
-        Map<String, Object> rewardAndValues = new HashMap<>();
-        rewardAndValues.put("reward", rewardPrize);
-        rewardAndValues.put("positions", matchingPositions);
-        rewardAndValues.put("ruleName", ruleName);
-        System.out.println(rewardAndValues);
+        RewardResponce rewardResponce = new RewardResponce();
+        rewardResponce.setName(configuration.getName());
+        rewardResponce.setReward(rewardPrize);
+        rewardResponce.setRuleName(ruleName);
+        rewardResponce.setMatchingPositions(matchingPositions);
+        rewardResponce.setTimestamp(System.currentTimeMillis());
+        rewardResponce.setDrawNo(result.getDrawNo());
+
+        Yaml yaml = new Yaml();
+        StringWriter writer = new StringWriter();
+        yaml.dump(rewardResponce, writer);
+//        yaml.dumpAs(rewardResponce, Tag.MAP, null);  //without tag
+
+        System.out.println(writer.toString());
+        return writer;
+
     }
 
     private String checkPositionIndexType(int positionIndex, LinkedHashMap<Integer, String> lotteryPositionTypes) {
@@ -147,6 +162,5 @@ public class CombinationCheck {
             return "letter";
         return null;
     }
-
 
 }
