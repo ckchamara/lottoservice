@@ -1,0 +1,107 @@
+name: supiriWasana
+id: 321
+specialCharactors:
+  - image: lagna-abc
+    uri: urlToImage
+
+positions:
+  - 1: number
+  - 2: number
+  - 3: number
+  - 4: number
+  - 5: number
+  - 6: number
+  - 7: number
+
+rules:
+  - rule: Super Number and 4 Numbers Correct
+    positions:
+      - 1
+    nonFixedPositions:
+      - 2
+      - 3
+      - 4
+      - 5
+    level: 1
+    positionalValue: true
+    nonFixedType:
+    matchingCount: 5
+    prize: 19170536.50
+
+  - rule: 4 Numbers Correct
+    nonFixedPositions:
+      - 2
+      - 3
+      - 4
+      - 5
+    level: 2
+    positionalValue: true
+    matchingCount: 4
+    prize: 1000000.00
+
+  - rule: Any 3 Numbers and 1st Bonus Number Correct
+    positions:
+      - 6
+    nonFixedPositions:
+      - 2
+      - 3
+      - 4
+      - 5
+    level: 3
+    positionalValue: true
+    matchingCount: 4
+    prize: 100000.00
+
+  - rule: Any 3 Numbers and 2nd Bonus Number Correct
+    positions:
+      - 7
+    nonFixedPositions:
+      - 2
+      - 3
+      - 4
+      - 5
+    level: 3
+    positionalValue: true
+    matchingCount: 4
+    prize: 50000.00
+
+  - rule: Any 3 Numbers Correct
+    nonFixedPositions:
+      - 2
+      - 3
+      - 4
+      - 5
+    level: 5
+    positionalValue: true
+    matchingCount: 3
+    prize: 2000.00
+
+  - rule: Any 2 Numbers Correct
+    nonFixedPositions:
+      - 2
+      - 3
+      - 4
+      - 5
+    level: 6
+    positionalValue: true
+    matchingCount: 2
+    prize: 100.00
+
+  - rule: Any Number Correct
+    nonFixedPositions:
+      - 2
+      - 3
+      - 4
+      - 5
+    level: 7
+    positionalValue: true
+    matchingCount: 1
+    prize: 20.00
+
+  - rule: Super Number Correct
+    positions:
+      - 1
+    level: 8
+    positionalValue: true
+    matchingCount: 1
+    prize: 20.00

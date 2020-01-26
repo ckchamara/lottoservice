@@ -1,0 +1,149 @@
+name: megaPower
+id: 321
+specialCharactors:
+  - image: lagna-abc
+    uri: urlToImage
+
+positions:
+  - 1: letter
+  - 2: number
+  - 3: number
+  - 4: number
+  - 5: number
+  - 6: number
+
+rules:
+  - rule: Letter and Super Number and 4 Numbers Correct
+    positions:
+      - 1
+      - 2
+    nonFixedPositions:
+      - 3
+      - 4
+      - 5
+      - 6
+    level: 1
+    positionalValue: true
+    nonFixedType:
+    matchingCount: 6
+    prize: 210203630.35  #10,000,000.00
+
+  - rule: Letter and 4 Numbers Correct
+    positions:
+      - 1
+    nonFixedPositions:
+      - 3
+      - 4
+      - 5
+      - 6
+    level: 2
+    positionalValue: true
+    matchingCount: 5
+    prize: 16389471.20  #2,000,000.00
+
+  - rule: Super Number and 4 Numbers Correct
+    positions:
+      - 2
+    nonFixedPositions:
+      - 3
+      - 4
+      - 5
+      - 6
+    level: 3
+    positionalValue: true
+    matchingCount: 5
+    prize: 14151726.40  #100,000.00
+
+  - rule: 4 Numbers Correct
+    nonFixedPositions:
+      - 3
+      - 4
+      - 5
+      - 6
+    level: 4
+    positionalValue: true
+    matchingCount: 4
+    prize: 1000000.00  #10,000.00
+
+  - rule: Letter and Any 3 Numbers Correct
+    positions:
+      - 1
+    nonFixedPositions:
+      - 3
+      - 4
+      - 5
+      - 6
+    level: 5
+    positionalValue: true
+    matchingCount: 4
+    prize: 100,000.00  #1,000.00
+
+  - rule: Any 3 Numbers Correct
+    nonFixedPositions:
+      - 3
+      - 4
+      - 5
+      - 6
+    level: 6
+    positionalValue: true
+    matchingCount: 2
+    prize: 1,000.00  #100.00
+
+  - rule: Letter and Any 2 Numbers Correct
+    positions:
+      - 1
+    nonFixedPositions:
+      - 3
+      - 4
+      - 5
+      - 6
+    level: 7
+    positionalValue: true
+    matchingCount: 3
+    prize: 500.00  #20.00
+
+
+  - rule: Any 2 Numbers Correct
+    positions:
+      - 3
+      - 4
+      - 5
+      - 6
+    level: 8
+    positionalValue: true
+    matchingCount: 2
+    prize: 100.00  #10,000.00
+
+  - rule: Letter and Any Number Correct
+    positions:
+      - 1
+    nonFixedPositions:
+      - 3
+      - 4
+      - 5
+      - 6
+    level: 9
+    positionalValue: true
+    matchingCount: 2
+    prize: 40.00  #1,000.00
+
+  - rule: Any Number Correct
+    nonFixedPositions:
+      - 3
+      - 4
+      - 5
+      - 6
+    level: 10
+    positionalValue: true
+    matchingCount: 1
+    prize: 20.00  #1,00.00
+
+  - rule: Letter Correct
+    positions:
+      - 1
+    level: 11
+    positionalValue: true
+    matchingCount: 1
+    prize: 20.00  #50.00
+
+
