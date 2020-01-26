@@ -1,12 +1,11 @@
 package com.bingo.lottoservice.services;
 
-import com.bingo.lottoservice.model.Configuration;
-import com.bingo.lottoservice.model.Lottery;
-import com.bingo.lottoservice.model.Result;
-import com.bingo.lottoservice.model.Rule;
+import com.bingo.lottoservice.model.*;
 import com.bingo.lottoservice.utils.LoadYAML;
+import org.yaml.snakeyaml.Yaml;
 
 import java.io.IOException;
+import java.io.StringWriter;
 import java.net.URISyntaxException;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -45,7 +44,7 @@ public class CombinationCheck {
         return mergeMap;
     }
 
-    public Map<String, Object> checkReward() throws Exception {
+    public StringWriter checkReward() throws Exception {
         double rewardPrize = 0;
         List<Integer> matchingPositions = null;
         String ruleName = null;
@@ -137,13 +136,19 @@ public class CombinationCheck {
                 break;
         }
 
-        Map<String, Object> rewardAndValues = new HashMap<>();
-        rewardAndValues.put("reward", rewardPrize);
-        rewardAndValues.put("positions", matchingPositions);
-        rewardAndValues.put("ruleName", ruleName);
-        System.out.println(rewardAndValues);
+        RewardResponce rewardResponce = new RewardResponce();
+        rewardResponce.setName(configuration.getName());
+        rewardResponce.setReward(rewardPrize);
+        rewardResponce.setRuleName(ruleName);
+        rewardResponce.setMatchingPositions(matchingPositions);
+        System.out.println(rewardResponce);
 
-        return rewardAndValues;
+        Yaml yaml = new Yaml();
+        StringWriter writer = new StringWriter();
+        yaml.dump(rewardResponce, writer);
+
+        return writer;
+
     }
 
     private String checkPositionIndexType(int positionIndex, LinkedHashMap<Integer, String> lotteryPositionTypes) {
