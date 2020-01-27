@@ -3,8 +3,10 @@ package com.bingo.lottoservice.services;
 import com.bingo.lottoservice.model.*;
 import com.bingo.lottoservice.utils.LoadYAML;
 import org.yaml.snakeyaml.Yaml;
+import org.yaml.snakeyaml.constructor.Constructor;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.StringWriter;
 import java.net.URISyntaxException;
 import java.util.*;
@@ -20,28 +22,46 @@ public class CombinationCheck {
 
     }
 
+    private static <T, V> LinkedHashMap<T, V> mergeHashmaps(ArrayList<LinkedHashMap<T, V>> mapList) {
+        LinkedHashMap<T, V> mergeMap = new LinkedHashMap<>();
+        if (mapList != null) {
+            for (LinkedHashMap<T, V> singleMap : mapList) {
+                mergeMap.putAll(singleMap);
+            }
+        }
+        return mergeMap;
+    }
+
     public void setConfig(Lottery Lottery) throws IOException, URISyntaxException {
         lottery = Lottery;
-        configuration = LoadYAML.load(this.getClass(), Configuration.class, lottery.getName() + "/configuration.yml");
+        configuration = LoadYAML.load(this.getClass(), Configuration.class, lottery.getName() + "/config.yml");
         result = LoadYAML.load(this.getClass(), Result.class, lottery.getName() + "/result.yml");
     }
 
-    public void print() {
-        System.out.println(configuration.getId());
-        System.out.println(result.getName());
-        System.out.println(lottery.getName());
+    public void print() throws IOException, URISyntaxException {
+//        System.out.println(configuration.getId());
+//        System.out.println(result.getName());
+//        System.out.println(lottery.getName());
 
-        configuration.getRules().stream()
-                .filter(rule -> rule.getNonFixedPositions() != null)
-                .forEach(rule -> System.out.println(rule.getNonFixedPositions() + rule.getRule()));
-    }
+//        configuration.getRules().stream()
+//                .filter(rule -> rule.getNonFixedPositions() != null)
+//                .forEach(rule -> System.out.println(rule.getNonFixedPositions() + rule.getRule()));
 
-    private static <T, V> LinkedHashMap<T, V> mergeHashmaps(ArrayList<LinkedHashMap<T, V>> mapList) {
-        LinkedHashMap<T, V> mergeMap = new LinkedHashMap<>();
-        for (LinkedHashMap<T, V> singleMap : mapList) {
-            mergeMap.putAll(singleMap);
+        Yaml yaml = new Yaml(new Constructor(Configuration.class));
+        InputStream inputStream = this.getClass()
+                .getClassLoader()
+                .getResourceAsStream("config.yml");
+//        Map<String, Object> obj = yaml.load(inputStream);
+//        System.out.println(obj);
+        configuration = LoadYAML.load(this.getClass(), Configuration.class, "config.yml");
+        for (Rule rule : configuration.getRules()) {
+            ArrayList<LinkedHashMap<Integer, ArrayList<Integer>>> getNonFixedPositionsDetails = rule.getNonFixedPositions();
+            LinkedHashMap<Integer, ArrayList<Integer>> nonFixedPositions = mergeHashmaps(getNonFixedPositionsDetails);
+            if (!nonFixedPositions.keySet().isEmpty()) {
+                System.out.println(nonFixedPositions.keySet());
+            }
         }
-        return mergeMap;
+
     }
 
     public StringWriter checkReward() throws Exception {
@@ -88,12 +108,18 @@ public class CombinationCheck {
 
             //logic for non-fixed positions
             if (rule.getNonFixedPositions() != null && !noMatchingPositionalValues) {
-                for (int nonFixPosition : rule.getNonFixedPositions()) {
+                //Check Null's
+                ArrayList<LinkedHashMap<Integer, ArrayList<Integer>>> getNonFixedPositionsDetails = rule.getNonFixedPositions();
+                LinkedHashMap<Integer, ArrayList<Integer>> nonFixedPositions = mergeHashmaps(getNonFixedPositionsDetails);
+//                if (!nonFixedPositions.keySet().isEmpty()){
+//                    System.out.println(nonFixedPositions.keySet());
+//                }
+                for (int nonFixPosition : nonFixedPositions.keySet()) {
                     System.out.println("Non-Fix " + nonFixPosition);
                     if (checkPositionIndexType(nonFixPosition, lotteryPositionTypes).equals("number")) {
 
-                        //filter only number indices
-                        List<Integer> filteredIndices = resultPositions.keySet()
+                        //filter only number indices  //!!
+                        List<Integer> filteredNumberIndices = resultPositions.keySet()
                                 .stream()
                                 .filter(resultIndex -> checkPositionIndexType(resultIndex, lotteryPositionTypes).equals("number"))
                                 .collect(Collectors.toList());
@@ -117,7 +143,8 @@ public class CombinationCheck {
                             }
                         }
 
-                        for (int filteredIndex : filteredIndices) {
+                        // !!
+                        for (int filteredIndex : filteredNumberIndices) {
                             if (lotteryPositions.get(nonFixPosition).toString()
                                     .equals(resultPositions.get(filteredIndex).toString())) {
                                 matchingPositions.add(nonFixPosition);
