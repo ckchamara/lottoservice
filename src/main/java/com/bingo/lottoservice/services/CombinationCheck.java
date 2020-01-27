@@ -105,6 +105,7 @@ public class CombinationCheck {
                                 .stream()
                                 .filter(entry -> existing.add(entry.getValue()))
                                 .collect((Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (x, y) -> y, LinkedHashMap::new)));
+
                         int identicalLotteryNumberCount = lotteryPositions.size();
                         boolean isDuplicateValuesExsist = originalLotteryNumberCount != identicalLotteryNumberCount;
                         if (isDuplicateValuesExsist) {
