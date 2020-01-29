@@ -104,7 +104,6 @@ rules:
     matchingCount: 2
     prize: 40.00  #20.00
 
-
   - rule: Any Number Correct
     positions:
     nonFixedPositions:
