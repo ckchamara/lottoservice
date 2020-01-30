@@ -1,4 +1,4 @@
-name: govisetha
+name: sevana
 id: 361
 specialCharactors:
   - image: lagna-abc
@@ -23,10 +23,10 @@ rules:
     level: 1
     positionalValue: false
     matchingCount: 5
-    prize: 10000000.00  #10,000,000.00
+    prize:  14000000.00  #10,000,000.00
 
   - rule: 4 Numbers Correct
-    positions:
+    nonFixedPositions:
       - 2
       - 3
       - 4
@@ -34,7 +34,7 @@ rules:
     level: 2
     positionalValue: true
     matchingCount: 4
-    prize: 1000000.00  #2,000,000.00
+    prize: 100000.00  #2,000,000.00
 
   - rule: Letter and any 3 numbers correct
     positions:
@@ -61,7 +61,7 @@ rules:
     positionalValue: false
     nonFixedType: number
     matchingCount: 3
-    prize: 2000.00  #10,000.00
+    prize: 1000.00  #10,000.00
 
   - rule: Letter and any 2 numbers correct
     positions:
@@ -75,7 +75,7 @@ rules:
     positionalValue: true
     nonFixedType: number
     matchingCount: 3
-    prize: 1000.00  #1,000.00
+    prize: 200.00  #1,000.00
 
   - rule: Any 2 numbers correct
     positions:
@@ -102,7 +102,8 @@ rules:
     positionalValue: true
     nonFixedType: number
     matchingCount: 2
-    prize: 40.00  #20.00
+    prize: 50.00  #20.00
+
 
   - rule: Any Number Correct
     positions:
