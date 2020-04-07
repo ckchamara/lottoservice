@@ -28,12 +28,15 @@ public class LottoEndpointController {
 
     @RequestMapping(value = "/checkreward", method = RequestMethod.POST)
     public final ResponseEntity<String> checkReward(@RequestBody String scannedLottery) throws Exception {
+        String scannedLotteryAsYaml = YamlUtil.JsonToYaml(scannedLottery);
+        String quotesRemoved = scannedLotteryAsYaml.replace("\"", "");
         Yaml yaml = new Yaml(new Constructor(Lottery.class));
-        Lottery lottery = yaml.load(scannedLottery);
+        Lottery lottery = yaml.load(quotesRemoved);
 
         CombinationCheck combinationCheck = new CombinationCheck();
         combinationCheck.setConfig(lottery);
-        return new ResponseEntity<>(combinationCheck.checkReward().toString(), HttpStatus.OK);
+        String checkedReward = YamlUtil.YamlToJson(combinationCheck.checkReward().toString());
+        return new ResponseEntity<>(checkedReward, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/check/{lotteryName}", method = RequestMethod.POST)

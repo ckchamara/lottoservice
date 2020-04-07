@@ -36,7 +36,7 @@ public class CombinationCheck {
                 .forEach(rule -> System.out.println(rule.getNonFixedPositions() + rule.getRule()));
     }
 
-    private static <T, V> LinkedHashMap<T, V> mergeHashmaps(ArrayList<LinkedHashMap<T, V>> mapList) {
+    public static <T, V> LinkedHashMap<T, V> mergeHashmaps(ArrayList<LinkedHashMap<T, V>> mapList) {
         LinkedHashMap<T, V> mergeMap = new LinkedHashMap<>();
         for (LinkedHashMap<T, V> singleMap : mapList) {
             mergeMap.putAll(singleMap);
