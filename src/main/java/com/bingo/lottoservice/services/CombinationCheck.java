@@ -135,6 +135,7 @@ public class CombinationCheck {
             rewardPrize = rule.getPrize();
             if (matchingPositions.size() == rule.getMatchingCount())
                 break;
+            else rewardPrize = 0;
         }
 
         RewardResponce rewardResponce = new RewardResponce();
