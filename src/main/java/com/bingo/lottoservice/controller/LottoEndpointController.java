@@ -15,6 +15,7 @@ import org.yaml.snakeyaml.constructor.Constructor;
 
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping(value = "/lottery", produces = MediaType.APPLICATION_JSON_VALUE)
 public class LottoEndpointController {
 
@@ -26,6 +27,7 @@ public class LottoEndpointController {
         return new ResponseEntity<>(jsonAsYaml, HttpStatus.OK);
     }
 
+    //    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/checkreward", method = RequestMethod.POST)
     public final ResponseEntity<String> checkReward(@RequestBody String scannedLottery) throws Exception {
         String scannedLotteryAsYaml = YamlUtil.JsonToYaml(scannedLottery);
