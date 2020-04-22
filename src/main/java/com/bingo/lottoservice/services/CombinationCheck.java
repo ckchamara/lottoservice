@@ -135,7 +135,10 @@ public class CombinationCheck {
             rewardPrize = rule.getPrize();
             if (matchingPositions.size() == rule.getMatchingCount())
                 break;
-            else rewardPrize = 0;
+            else {
+                rewardPrize = 0;
+                ruleName = "No Matching Values";
+            }
         }
 
         RewardResponce rewardResponce = new RewardResponce();
