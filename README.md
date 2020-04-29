@@ -62,9 +62,9 @@ This Component is used to set Configuration of lottery winning patterns, and ret
     name: govisetha
     id: 321
     positions:
-    - '1': J
-    - '2': 8
-    - '3': 25
-    - '4': 80
-    - '5': 1
+    - 1: J
+    - 2: 8
+    - 3: 25
+    - 4: 80
+    - 5: 1
 
