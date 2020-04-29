@@ -28,3 +28,43 @@ This Component is used to set Configuration of lottery winning patterns, and ret
     nonFixedType: number
     matchingCount: 4
     prize: 100000.00 
+
+
+### HTTP Request
+
+#### POST Request with JSON object
+
+    {
+      "name": "govisetha",
+      "id": 321,
+      "positions": [
+        {
+          "1": "o"
+        },
+        {
+          "2": 8
+        },
+        {
+          "3": 25
+        },
+        {
+          "4": 80
+        },
+        {
+          "5": 1
+        }
+      ]
+    }
+    
+#### POST Request with YML object
+
+    ---
+    name: govisetha
+    id: 321
+    positions:
+    - '1': J
+    - '2': 8
+    - '3': 25
+    - '4': 80
+    - '5': 1
+
