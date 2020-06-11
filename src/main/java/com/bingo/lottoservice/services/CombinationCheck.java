@@ -36,7 +36,7 @@ public class CombinationCheck {
                 .forEach(rule -> System.out.println(rule.getNonFixedPositions() + rule.getRule()));
     }
 
-    private static <T, V> LinkedHashMap<T, V> mergeHashmaps(ArrayList<LinkedHashMap<T, V>> mapList) {
+    public static <T, V> LinkedHashMap<T, V> mergeHashmaps(ArrayList<LinkedHashMap<T, V>> mapList) {
         LinkedHashMap<T, V> mergeMap = new LinkedHashMap<>();
         for (LinkedHashMap<T, V> singleMap : mapList) {
             mergeMap.putAll(singleMap);
@@ -135,6 +135,10 @@ public class CombinationCheck {
             rewardPrize = rule.getPrize();
             if (matchingPositions.size() == rule.getMatchingCount())
                 break;
+            else {
+                rewardPrize = 0;
+                ruleName = "No Matching Values";
+            }
         }
 
         RewardResponce rewardResponce = new RewardResponce();

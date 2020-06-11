@@ -15,6 +15,7 @@ import org.yaml.snakeyaml.constructor.Constructor;
 
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping(value = "/lottery", produces = MediaType.APPLICATION_JSON_VALUE)
 public class LottoEndpointController {
 
@@ -26,14 +27,18 @@ public class LottoEndpointController {
         return new ResponseEntity<>(jsonAsYaml, HttpStatus.OK);
     }
 
+    //    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/checkreward", method = RequestMethod.POST)
     public final ResponseEntity<String> checkReward(@RequestBody String scannedLottery) throws Exception {
+        String scannedLotteryAsYaml = YamlUtil.JsonToYaml(scannedLottery);
+        String quotesRemoved = scannedLotteryAsYaml.replace("\"", "");
         Yaml yaml = new Yaml(new Constructor(Lottery.class));
-        Lottery lottery = yaml.load(scannedLottery);
+        Lottery lottery = yaml.load(quotesRemoved);
 
         CombinationCheck combinationCheck = new CombinationCheck();
         combinationCheck.setConfig(lottery);
-        return new ResponseEntity<>(combinationCheck.checkReward().toString(), HttpStatus.OK);
+        String checkedReward = YamlUtil.YamlToJson(combinationCheck.checkReward().toString());
+        return new ResponseEntity<>(checkedReward, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/check/{lotteryName}", method = RequestMethod.POST)
