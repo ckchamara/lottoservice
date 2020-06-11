@@ -28,8 +28,8 @@ public class LottoEndpointController {
     }
 
     //    @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "/checkreward", method = RequestMethod.POST)
-    public final ResponseEntity<String> checkReward(@RequestBody String scannedLottery) throws Exception {
+    @RequestMapping(value = "/checkRewardAsJson", method = RequestMethod.POST)
+    public final ResponseEntity<String> checkRewardAsJson(@RequestBody String scannedLottery) throws Exception {
         String scannedLotteryAsYaml = YamlUtil.JsonToYaml(scannedLottery);
         String quotesRemoved = scannedLotteryAsYaml.replace("\"", "");
         Yaml yaml = new Yaml(new Constructor(Lottery.class));
@@ -39,6 +39,16 @@ public class LottoEndpointController {
         combinationCheck.setConfig(lottery);
         String checkedReward = YamlUtil.YamlToJson(combinationCheck.checkReward().toString());
         return new ResponseEntity<>(checkedReward, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/checkrewardAsYaml", method = RequestMethod.POST)
+    public final ResponseEntity<String> checkrewardAsYaml(@RequestBody String scannedLottery) throws Exception {
+        Yaml yaml = new Yaml(new Constructor(Lottery.class));
+        Lottery lottery = yaml.load(scannedLottery);
+
+        CombinationCheck combinationCheck = new CombinationCheck();
+        combinationCheck.setConfig(lottery);
+        return new ResponseEntity<>(combinationCheck.checkReward().toString(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/check/{lotteryName}", method = RequestMethod.POST)
