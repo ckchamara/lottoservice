@@ -1,7 +1,10 @@
 package com.bingo.lottoservice.services;
 
+import com.bingo.lottoservice.AppConfiguration;
 import com.bingo.lottoservice.model.*;
 import com.bingo.lottoservice.utils.LoadYAML;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.IOException;
@@ -10,6 +13,7 @@ import java.net.URISyntaxException;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Service
 public class CombinationCheck {
 
     private Configuration configuration;
@@ -153,7 +157,6 @@ public class CombinationCheck {
         StringWriter writer = new StringWriter();
         yaml.dump(rewardResponce, writer);
 //        yaml.dumpAs(rewardResponce, Tag.MAP, null);  //without tag
-
         System.out.println(writer.toString());
         return writer;
 

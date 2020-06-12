@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/lottoservice.iml" filepath="$PROJECT_DIR$/lottoservice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/lottoservice.iml" filepath="$PROJECT_DIR$/.idea/lottoservice.iml" />
     </modules>
   </component>
 </project>

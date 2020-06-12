@@ -6,6 +6,7 @@ import com.bingo.lottoservice.utils.YamlUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,9 @@ import org.yaml.snakeyaml.constructor.Constructor;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping(value = "/lottery", produces = MediaType.APPLICATION_JSON_VALUE)
 public class LottoEndpointController {
+
+    @Autowired
+    private CombinationCheck combinationCheck;
 
     @RequestMapping(value = "/projects", method = RequestMethod.POST)
     public final ResponseEntity<String> JsonToYaml(@RequestBody String projects) throws JsonProcessingException {
@@ -34,8 +38,6 @@ public class LottoEndpointController {
         String quotesRemoved = scannedLotteryAsYaml.replace("\"", "");
         Yaml yaml = new Yaml(new Constructor(Lottery.class));
         Lottery lottery = yaml.load(quotesRemoved);
-
-        CombinationCheck combinationCheck = new CombinationCheck();
         combinationCheck.setConfig(lottery);
         String checkedReward = YamlUtil.YamlToJson(combinationCheck.checkReward().toString());
         return new ResponseEntity<>(checkedReward, HttpStatus.OK);
@@ -45,8 +47,6 @@ public class LottoEndpointController {
     public final ResponseEntity<String> checkrewardAsYaml(@RequestBody String scannedLottery) throws Exception {
         Yaml yaml = new Yaml(new Constructor(Lottery.class));
         Lottery lottery = yaml.load(scannedLottery);
-
-        CombinationCheck combinationCheck = new CombinationCheck();
         combinationCheck.setConfig(lottery);
         return new ResponseEntity<>(combinationCheck.checkReward().toString(), HttpStatus.OK);
     }
