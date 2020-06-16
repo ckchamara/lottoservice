@@ -1,5 +1,7 @@
 package com.bingo.lottoservice.controller;
 
+import com.bingo.lottoservice.AppConfiguration;
+import com.bingo.lottoservice.LottoserviceApplication;
 import com.bingo.lottoservice.model.Lottery;
 import com.bingo.lottoservice.services.CombinationCheck;
 import com.bingo.lottoservice.utils.YamlUtil;
@@ -7,6 +9,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.system.ApplicationHome;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
 
+import java.io.File;
+import java.net.URISyntaxException;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -22,6 +27,8 @@ public class LottoEndpointController {
 
     @Autowired
     private CombinationCheck combinationCheck;
+    @Autowired
+    private AppConfiguration appConfiguration;
 
     @RequestMapping(value = "/projects", method = RequestMethod.POST)
     public final ResponseEntity<String> JsonToYaml(@RequestBody String projects) throws JsonProcessingException {
@@ -64,4 +71,10 @@ public class LottoEndpointController {
         return new ResponseEntity<>(jsonWriter.writeValueAsString(obj), HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/filePath", method = RequestMethod.POST)
+
+    public ResponseEntity<String> filePath() throws URISyntaxException {
+        ApplicationHome home = new ApplicationHome(LottoserviceApplication.class);
+        return new ResponseEntity<>(home.getDir().toString(), HttpStatus.OK);
+    }
 }

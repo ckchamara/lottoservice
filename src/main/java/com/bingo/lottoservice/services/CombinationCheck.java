@@ -1,15 +1,27 @@
 package com.bingo.lottoservice.services;
 
 import com.bingo.lottoservice.AppConfiguration;
+import com.bingo.lottoservice.LottoserviceApplication;
 import com.bingo.lottoservice.model.*;
 import com.bingo.lottoservice.utils.LoadYAML;
+import com.sun.jndi.toolkit.url.Uri;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.system.ApplicationHome;
 import org.springframework.stereotype.Service;
 import org.yaml.snakeyaml.Yaml;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.StringWriter;
+import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -26,8 +38,13 @@ public class CombinationCheck {
 
     public void setConfig(Lottery Lottery) throws IOException, URISyntaxException {
         lottery = Lottery;
-        configuration = LoadYAML.load(this.getClass(), Configuration.class, lottery.getName() + "/configuration.yml");
-        result = LoadYAML.load(this.getClass(), Result.class, lottery.getName() + "/result.yml");
+        ApplicationHome home = new ApplicationHome(LottoserviceApplication.class);
+        String link = "ftp://192.168.56.1/Projects/lottoservice/src/config/";
+
+
+        configuration = LoadYAML.loadYamlfromFTP(Configuration.class, link + lottery.getName() + "/configuration.yml");
+//        configuration = LoadYAML.load(this.getClass(), Configuration.class,  lottery.getName() + "/configuration.yml");
+        result = LoadYAML.load(this.getClass(), Result.class,  lottery.getName() + "/result.yml");
     }
 
     public void print() {

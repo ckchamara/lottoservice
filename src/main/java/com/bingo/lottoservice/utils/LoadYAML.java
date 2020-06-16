@@ -6,7 +6,9 @@ import org.yaml.snakeyaml.constructor.Constructor;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URISyntaxException;
+import java.net.*;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
@@ -20,12 +22,13 @@ public class LoadYAML {
         return yaml.load(inputStream);
     }
 
-    public static <T> T loadByString(Class Class, String ymlPath) {
-        Yaml yaml = new Yaml();
-//        InputStream inputStream = Class.getClass()
-//                .getClassLoader()
-//                .getResourceAsStream(ymlPath);
-        return yaml.load(ymlPath);
+
+    public static <T> T loadYamlfromFTP(Class<T> myClass, String ftpFileLink) throws IOException {
+        URL url = new URL(ftpFileLink);
+        URLConnection urlc = url.openConnection();
+        InputStream inputStream = urlc.getInputStream();
+        Yaml yaml = new Yaml(new Constructor(myClass));
+        return yaml.load(inputStream);
     }
 
 }
