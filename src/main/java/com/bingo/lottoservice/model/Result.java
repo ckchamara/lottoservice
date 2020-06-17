@@ -6,8 +6,17 @@ import java.util.LinkedHashMap;
 public class Result {
     String name;
     int id;
+    String date;
     int drawNo;
     ArrayList<LinkedHashMap<Integer,Object>> positions;
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 
     public String getName() {
         return name;

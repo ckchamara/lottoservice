@@ -1,0 +1,58 @@
+{
+  "properties": {
+    "lottery": {
+      "type": "nested",
+      "properties": {
+        "name": {
+          "type": "text"
+        },
+        "date": {
+          "type": "date",
+          "format": "yyyy-MM-dd"
+        },
+        "id": {
+          "type": "text"
+        },
+        "drawNo": {
+          "type": "integer"
+        },
+        "outline": {
+          "type": "nested",
+          "properties": {
+            "positions": {
+              "properties": {
+                "1": {
+                  "type": "text"
+                },
+                "2": {
+                  "type": "text"
+                },
+                "3": {
+                  "type": "text"
+                },
+                "4": {
+                  "type": "text"
+                },
+                "5": {
+                  "type": "text"
+                },
+                "6": {
+                  "type": "text"
+                },
+                "7": {
+                  "type": "text"
+                },
+                "8": {
+                  "type": "text"
+                },
+                "9": {
+                  "type": "text"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

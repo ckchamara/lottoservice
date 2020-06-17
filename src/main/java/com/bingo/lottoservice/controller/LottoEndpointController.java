@@ -16,9 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
-
 import java.io.File;
-import java.net.URISyntaxException;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -38,7 +36,7 @@ public class LottoEndpointController {
         return new ResponseEntity<>(jsonAsYaml, HttpStatus.OK);
     }
 
-    //    @CrossOrigin(origins = "http://localhost:4200")
+//    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/checkRewardAsJson", method = RequestMethod.POST)
     public final ResponseEntity<String> checkRewardAsJson(@RequestBody String scannedLottery) throws Exception {
         String scannedLotteryAsYaml = YamlUtil.JsonToYaml(scannedLottery);
@@ -72,7 +70,7 @@ public class LottoEndpointController {
     }
 
     @RequestMapping(value = "/filePath", method = RequestMethod.POST)
-    public ResponseEntity<String> filePath() throws URISyntaxException {
+    public ResponseEntity<String> filePath() {
         ApplicationHome home = new ApplicationHome(LottoserviceApplication.class);
         return new ResponseEntity<>(home.getDir().toString(), HttpStatus.OK);
     }
@@ -88,4 +86,5 @@ public class LottoEndpointController {
         System.out.println(abc);
         return new ResponseEntity<>(abc, HttpStatus.OK);
     }
+
 }
