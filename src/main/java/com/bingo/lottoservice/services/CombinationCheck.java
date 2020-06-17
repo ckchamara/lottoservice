@@ -28,6 +28,9 @@ import java.util.stream.Collectors;
 @Service
 public class CombinationCheck {
 
+    @Autowired
+    AppConfiguration appConfiguration;
+
     private Configuration configuration;
     private Result result;
     private Lottery lottery;
@@ -39,10 +42,8 @@ public class CombinationCheck {
     public void setConfig(Lottery Lottery) throws IOException, URISyntaxException {
         lottery = Lottery;
         ApplicationHome home = new ApplicationHome(LottoserviceApplication.class);
-        String link = "ftp://192.168.56.1/Projects/lottoservice/src/config/";
 
-
-        configuration = LoadYAML.loadYamlfromFTP(Configuration.class, link + lottery.getName() + "/configuration.yml");
+        configuration = LoadYAML.loadYamlfromFTP(Configuration.class, appConfiguration.getFtplink() + lottery.getName() + "/configuration.yml");
 //        configuration = LoadYAML.load(this.getClass(), Configuration.class,  lottery.getName() + "/configuration.yml");
         result = LoadYAML.load(this.getClass(), Result.class,  lottery.getName() + "/result.yml");
     }

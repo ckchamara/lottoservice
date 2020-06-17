@@ -7,6 +7,15 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties("app")
 public class AppConfiguration {
     private String title;
+    private String ftplink;
+
+    public String getFtplink() {
+        return ftplink;
+    }
+
+    public void setFtplink(String ftplink) {
+        this.ftplink = ftplink;
+    }
 
     public String getTitle() {
         return title;
