@@ -91,16 +91,4 @@ public class LottoEndpointController {
         return new ResponseEntity<>(home.getDir().toString(), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/fileUpload", method = RequestMethod.POST)
-    public ResponseEntity<String> fileUpload(@RequestBody File file) {
-        System.out.println(file.toString());
-        return new ResponseEntity<>(file.toString(), HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "/test", method = RequestMethod.POST)
-    public ResponseEntity<String> test(@RequestBody String abc) {
-        System.out.println(abc);
-        return new ResponseEntity<>(abc, HttpStatus.OK);
-    }
-
 }
