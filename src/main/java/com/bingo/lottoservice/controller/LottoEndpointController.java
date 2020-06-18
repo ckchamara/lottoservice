@@ -4,9 +4,11 @@ import com.bingo.lottoservice.AppConfiguration;
 import com.bingo.lottoservice.LottoserviceApplication;
 import com.bingo.lottoservice.model.Lottery;
 import com.bingo.lottoservice.services.CombinationCheck;
+import com.bingo.lottoservice.utils.HttpClient;
 import com.bingo.lottoservice.utils.YamlUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.system.ApplicationHome;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.*;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -27,6 +31,8 @@ public class LottoEndpointController {
     private CombinationCheck combinationCheck;
     @Autowired
     private AppConfiguration appConfiguration;
+
+    private Map<String,String> headers = new HashMap();
 
     @RequestMapping(value = "/projects", method = RequestMethod.POST)
     public final ResponseEntity<String> JsonToYaml(@RequestBody String projects) throws JsonProcessingException {
@@ -45,6 +51,16 @@ public class LottoEndpointController {
         Lottery lottery = yaml.load(quotesRemoved);
         combinationCheck.setConfig(lottery);
         String checkedReward = YamlUtil.YamlToJson(combinationCheck.checkReward().toString());
+
+        //test
+        ObjectMapper mapper = new ObjectMapper();
+        ObjectNode jsonObj = mapper.createObjectNode();
+        jsonObj.put("lotteryName", "BC");
+        jsonObj.put("timestamp",String.valueOf(System.currentTimeMillis()));
+        String counterIndexdata = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonObj);
+        headers.put("Content-Type","application/json");
+        HttpClient.call1(appConfiguration.getElasticHost()+"/lottry_api_invoke_count/_doc",headers,"POST",counterIndexdata);
+
         return new ResponseEntity<>(checkedReward, HttpStatus.OK);
     }
 
