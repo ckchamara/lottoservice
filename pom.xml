@@ -12,11 +12,18 @@
 	<artifactId>lottoservice</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>lottoservice</name>
-	<description>number checking component bingo app</description>
+	<description>check reward of a given lottery</description>
 
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
+
+	<repositories>
+		<repository>
+			<id>elastic.co</id>
+			<url>https://artifacts.elastic.co/maven</url>
+		</repository>
+	</repositories>
 
 	<dependencies>
 		<dependency>
@@ -89,8 +96,8 @@
 			<version>2.11.0</version>
 		</dependency>
 
-
 	</dependencies>
+
 
 	<build>
 		<plugins>

@@ -45,7 +45,7 @@ public class CombinationCheck {
 
         configuration = LoadYAML.loadYamlfromFTP(Configuration.class, appConfiguration.getFtplink() + lottery.getName() + "/configuration.yml");
 //        configuration = LoadYAML.load(this.getClass(), Configuration.class,  lottery.getName() + "/configuration.yml");
-        result = LoadYAML.load(this.getClass(), Result.class,  lottery.getName() + "/result.yml");
+        result = LoadYAML.load(this.getClass(), Result.class, lottery.getName() + "/result.yml");
     }
 
     public void print() {
@@ -77,7 +77,7 @@ public class CombinationCheck {
 
         //get config rule
         ruleCheckingLoop:
-        for (Rule rule:configuration.getRules()) {
+        for (Rule rule : configuration.getRules()) {
             System.out.println(rule.getRule());
             matchingPositions = new ArrayList<>();
             boolean noMatchingPositionalValues = false;

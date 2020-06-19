@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class LottoserviceApplication {
 
-	public static void main(String[] args)  {
-		SpringApplication.run(LottoserviceApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(LottoserviceApplication.class, args);
+    }
 }

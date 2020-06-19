@@ -18,7 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
-import java.io.File;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,7 +32,7 @@ public class LottoEndpointController {
     @Autowired
     private AppConfiguration appConfiguration;
 
-    private Map<String,String> headers = new HashMap();
+    private Map<String, String> headers = new HashMap();
 
     @RequestMapping(value = "/projects", method = RequestMethod.POST)
     public final ResponseEntity<String> JsonToYaml(@RequestBody String projects) throws JsonProcessingException {
@@ -42,7 +42,7 @@ public class LottoEndpointController {
         return new ResponseEntity<>(jsonAsYaml, HttpStatus.OK);
     }
 
-//    @CrossOrigin(origins = "http://localhost:4200")
+    //    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/checkRewardAsJson", method = RequestMethod.POST)
     public final ResponseEntity<String> checkRewardAsJson(@RequestBody String scannedLottery) throws Exception {
         String scannedLotteryAsYaml = YamlUtil.JsonToYaml(scannedLottery);
@@ -55,11 +55,11 @@ public class LottoEndpointController {
         //test
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode jsonObj = mapper.createObjectNode();
-        jsonObj.put("lotteryName", "BC");
-        jsonObj.put("timestamp",String.valueOf(System.currentTimeMillis()));
+        jsonObj.put("lotteryName", lottery.getName());
+        jsonObj.put("timestamp", String.valueOf(System.currentTimeMillis()));
         String counterIndexdata = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonObj);
-        headers.put("Content-Type","application/json");
-        HttpClient.call1(appConfiguration.getElasticHost()+"/lottry_api_invoke_count/_doc",headers,"POST",counterIndexdata);
+        headers.put("Content-Type", "application/json");
+        HttpClient.call1(appConfiguration.getElasticHost() + "/lottry_api_invoke_count/_doc", headers, "POST", counterIndexdata);
 
         return new ResponseEntity<>(checkedReward, HttpStatus.OK);
     }
