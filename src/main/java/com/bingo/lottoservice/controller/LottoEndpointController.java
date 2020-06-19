@@ -52,7 +52,7 @@ public class LottoEndpointController {
         combinationCheck.setConfig(lottery);
         String checkedReward = YamlUtil.YamlToJson(combinationCheck.checkReward().toString());
 
-        //test
+        //upsert method invoke counter values
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode jsonObj = mapper.createObjectNode();
         jsonObj.put("lotteryName", lottery.getName());
